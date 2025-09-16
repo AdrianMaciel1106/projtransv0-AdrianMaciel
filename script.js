@@ -10,9 +10,9 @@ for (let i = 0; i < data.preguntes.length; i++) {
     htmlString += `<img src="img/${data.preguntes[i].imatge}" alt="imatge pregunta ${i+1}"> <br>`;
 
     for (let j = 0; j < data.preguntes[i].respostes.length; j++){
-        htmlString += `<button onclick="console.log('has apretado pregunta'+${i+1}+' y respuesta '+${j+1})>
+        htmlString += `<button onclick="marcarResposta(${i}, ${j})">
         ${data.preguntes[i].respostes[j].resposta}
-        </button>`;
+        </button> `;
     }
 }
 
