@@ -2,7 +2,6 @@ import data from './data.js';
 
 const contenidor = document.getElementById("questionari");
 
-// Solo mostramos la primera pregunta
 const pregunta = data.preguntes[0];
 
 let htmlString = `
