@@ -4,30 +4,30 @@ export default {
       id: 1,
       pregunta: "Quin d’aquests és el logotip correcte de BMW?",
       respostes: [
-        { id: 1, text: "BMW", correcta: true, imatge: "https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" },
-        { id: 2, text: "Audi", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Audi_logo_detail.svg" },
-        { id: 3, text: "Mercedes-Benz", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg" },
-        { id: 4, text: "Lexus", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lexus_division_emblem.svg" }
+        { id: 1, text: "", correcta: true, imatge: "https://upload.wikimedia.org/wikipedia/commons/4/45/BMW_White-Colour_RGB.png" },
+        { id: 2, text: "", correcta: false, imatge: "https://static.vecteezy.com/system/resources/previews/019/766/236/non_2x/audi-logo-audi-icon-transparent-free-png.png" },
+        { id: 3, text: "", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg" },
+        { id: 4, text: "", correcta: false, imatge: "https://img.favpng.com/25/15/1/lexus-rx-toyota-car-lexus-is-png-favpng-Yze7fea0XAzjBUzyaphuWBR4S.jpg" }
       ]
     },
     {
       id: 2,
       pregunta: "Quin és el logotip d’Apple?",
       respostes: [
-        { id: 1, text: "Apple", correcta: true, imatge: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" },
-        { id: 2, text: "Samsung", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" },
-        { id: 3, text: "Sony", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/2/25/Sony_logo.svg" },
-        { id: 4, text: "Huawei", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/6/66/Huawei_Standard_logo.svg" }
+        { id: 1, text: "Apple", correcta: true, imatge: "https://simpleicons.org/icons/apple.svg" },
+        { id: 2, text: "Samsung", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh9axExasKJoaXSnBnr8vc25f-zDUuHSvh4A&s" },
+        { id: 3, text: "Sony", correcta: false, imatge: "https://pluspng.com/logo-img/so142sond681-sony-logo-sony-group-portal-home.png" },
+        { id: 4, text: "Huawei", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH9wxO5Dk0EyiRvjbFNx5yUo-DqP7kQ9zzqQ&s" }
       ]
     },
     {
       id: 3,
       pregunta: "Quin logotip pertany a Coca-Cola?",
       respostes: [
-        { id: 1, text: "Coca-Cola", correcta: true, imatge: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Coca-Cola_logo.svg" },
-        { id: 2, text: "Pepsi", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/8/85/Pepsi_logo_2014.svg" },
-        { id: 3, text: "Dr Pepper", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/2/27/Dr_Pepper_logo_2015.png" },
-        { id: 4, text: "7UP", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/6/69/7_up_logo.svg" }
+        { id: 1, text: "Coca-Cola", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQifVv8M286hSVl88wSgnt_audHp2tJ0o97Qg&s" },
+        { id: 2, text: "Pepsi", correcta: false, imatge: "" },
+        { id: 3, text: "Dr Pepper", correcta: false, imatge: "" },
+        { id: 4, text: "7UP", correcta: false, imatge: ""}
       ]
     },
     {

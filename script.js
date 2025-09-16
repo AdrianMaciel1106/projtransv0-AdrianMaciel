@@ -1,30 +1,47 @@
 import data from './data.js';
 
 const contenidor = document.getElementById("questionari");
+let current = 0; // índice de la pregunta actual
 
-const pregunta = data.preguntes[0];
+// Función para mostrar una pregunta
+function mostrarPregunta() {
+  const pregunta = data.preguntes[current];
 
-let htmlString = `
-  <h2>${pregunta.pregunta}</h2>
-  <img src="${pregunta.imatge}" alt="Imatge de la pregunta">
-`;
+  let html = `<h2>${pregunta.pregunta}</h2>`;
 
-pregunta.respostes.forEach((resposta, index) => {
-  htmlString += `
-    <button onclick="marcarResposta(${index})">
-      ${resposta.resposta}
-    </button>
-  `;
-});
+  pregunta.respostes.forEach((r, index) => {
+    html += `
+      <button class="resposta" onclick="marcarResposta(${index})">
+        <img src="${r.imatge}" alt="${r.text}" style="max-width:100px; display:block; margin:auto;">
+        <span>${r.text}</span>
+      </button>
+    `;
+  });
 
-contenidor.innerHTML = htmlString;
+  html += `<br><button id="següent" style="margin-top:20px;">Següent</button>`;
 
-// Funció per comprovar la resposta
+  contenidor.innerHTML = html;
+
+  // Asignamos el evento del botón "Següent"
+  document.getElementById("següent").addEventListener("click", () => {
+    current++;
+    if (current < data.preguntes.length) {
+      mostrarPregunta();
+    } else {
+      contenidor.innerHTML = `<h2>Has acabat el joc!</h2>`;
+    }
+  });
+}
+
+// Función para marcar respuesta
 window.marcarResposta = function(index) {
-  const correcta = pregunta.respostes[index].correcta;
-  if (correcta) {
+  const pregunta = data.preguntes[current];
+  if (pregunta.respostes[index].correcta) {
     alert("Correcte!");
   } else {
-    alert("Incorrecte. Torna-ho a provar!");
+    alert("Incorrecte!");
   }
 };
+
+// Iniciamos el juego
+mostrarPregunta();
