@@ -9,7 +9,7 @@ export default {
         { id: 3, resposta: "Mercedes-Benz", correcta: false },
         { id: 4, resposta: "Lexus", correcta: false }
       ],
-      imatge: "https://exemple.com/bmw.jpg"
+      imatge: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/640px-BMW.svg.png"
     },
     {
       id: 2,

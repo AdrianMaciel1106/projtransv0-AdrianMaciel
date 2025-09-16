@@ -1,24 +1,31 @@
-import data from "./data.js";
-//alert("hola");
+import data from './data.js';
 
-let contenidor = document.getElementById("questionari");
-let htmlString="";
+const contenidor = document.getElementById("questionari");
 
-for (let i = 0; i < data.preguntes.length; i++) {
-    const pregunta = data.preguntes[i];
-  
-    htmlString += `<h3>${pregunta.pregunta}</h3>`;
-    htmlString += `<img src="${pregunta.imatge}" alt="imatge pregunta ${i + 1}" style="max-width:200px;display:block;margin:1rem auto;">`;
-  
-    for (let j = 0; j < pregunta.respostes.length; j++) {
-      htmlString += `
-        <button id="btn-${i}-${j}" onclick="marcarResposta(${i},${j})">
-          ${pregunta.respostes[j].resposta}
-        </button>
-      `;
-    }
-  
-    htmlString += "<hr>";
-  }
+// Solo mostramos la primera pregunta
+const pregunta = data.preguntes[0];
+
+let htmlString = `
+  <h2>${pregunta.pregunta}</h2>
+  <img src="${pregunta.imatge}" alt="Imatge de la pregunta">
+`;
+
+pregunta.respostes.forEach((resposta, index) => {
+  htmlString += `
+    <button onclick="marcarResposta(${index})">
+      ${resposta.resposta}
+    </button>
+  `;
+});
 
 contenidor.innerHTML = htmlString;
+
+// Funció per comprovar la resposta
+window.marcarResposta = function(index) {
+  const correcta = pregunta.respostes[index].correcta;
+  if (correcta) {
+    alert("Correcte!");
+  } else {
+    alert("Incorrecte. Torna-ho a provar!");
+  }
+};
