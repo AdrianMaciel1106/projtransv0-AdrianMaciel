@@ -143,60 +143,60 @@ export default {
       id: 15,
       pregunta: "Quin logotip és Toblerone?",
       respostes: [
-        { id: 1, text: "Toblerone", correcta: true, imatge: "" },
-        { id: 2, text: "Lindt", correcta: false, imatge: "" },
-        { id: 3, text: "Milka", correcta: false, imatge: "" },
-        { id: 4, text: "Nestlé", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqEkRfLFKUNO8tkJ0rAd2LjCdGg75BuHSXrA&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQExYrHGgccN_k1ZBnc2HU8XMsuSytp93gcug&s" },
+        { id: 3, text: "", correcta: false, imatge: "https://logosquiz.net/data/logosquiz-aticod/images/milka.png" },
+        { id: 4, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbDdQe80zu7YB-Y8ukXwJz-HwKJmp5-DLf9g&s" }
       ]
     },
     {
       id: 16,
       pregunta: "Quin logotip és de L’Oréal Paris?",
       respostes: [
-        { id: 1, text: "L’Oréal Paris", correcta: true, imatge: "" },
-        { id: 2, text: "Maybelline", correcta: false, imatge: "" },
-        { id: 3, text: "Revlon", correcta: false, imatge: "" },
-        { id: 4, text: "Clinique", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://logosquiz.net/data/logoquiz-mangoogames/images/logo_loreal.png" },
+        { id: 2, text: "", correcta: false, imatge: "https://logosquiz.net/data/logoquiz/images/maybelline_3.png" },
+        { id: 3, text: "", correcta: false, imatge: "https://1000marcas.net/wp-content/uploads/2020/11/Revlon-Logo-tumb-150x150.jpg" },
+        { id: 4, text: "", correcta: false, imatge: "https://1000logos.net/wp-content/uploads/2020/04/Emblem-Clinique.jpeg" }
       ]
     },
     {
       id: 17,
       pregunta: "Quin logotip és d’Adidas?",
       respostes: [
-        { id: 1, text: "Adidas", correcta: true, imatge: "" },
-        { id: 2, text: "Nike", correcta: false, imatge: "" },
-        { id: 3, text: "Puma", correcta: false, imatge: "" },
-        { id: 4, text: "Asics", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOXBUSqR9QfqToTSuR2VKYa4UOm4ojiJdn8A&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" },
+        { id: 3, text: "", correcta: false, imatge: "https://www.jetpunk.com/img/user-img/fb/fbc1c8f69a-450.webp" },
+        { id: 4, text: "", correcta: false, imatge: "https://static.stacker.com/s3fs-public/styles/1280x720/s3/asics.png" }
       ]
     },
     {
       id: 18,
       pregunta: "Quin logotip és Louis Vuitton?",
       respostes: [
-        { id: 1, text: "Louis Vuitton", correcta: true, imatge: "" },
-        { id: 2, text: "Gucci", correcta: false, imatge: "" },
-        { id: 3, text: "Fendi", correcta: false, imatge: "" },
-        { id: 4, text: "Dior", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://img.buzzfeed.com/store-an-image-prod-us-east-1/cE4eBFtsB.png?downsize=625%3A*&output-format=jpg&output-quality=auto" },
+        { id: 2, text: "", correcta: false, imatge: "https://www.jetpunk.com/img/user-img/f4/f49fba335f-450.webp" },
+        { id: 3, text: "", correcta: false, imatge: "https://img.buzzfeed.com/buzzfeed-static/static/2017-11/17/18/enhanced/buzzfeed-prod-fastlane-03/enhanced-4372-1510962054-1.jpg?output-format=jpg&output-quality=auto" },
+        { id: 4, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTziJH4cDUw97k_lWt1pcYZHsau5F0PtwQdrQ&s" }
       ]
     },
     {
       id: 19,
       pregunta: "Quin logotip és Corona (cervesa)?",
       respostes: [
-        { id: 1, text: "Corona", correcta: true, imatge: "" },
-        { id: 2, text: "Heineken", correcta: false, imatge: "" },
-        { id: 3, text: "Budweiser", correcta: false, imatge: "" },
-        { id: 4, text: "Stella Artois", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://i.insider.com/50083a7869beddb547000002?width=600&format=jpeg&auto=webp" },
+        { id: 2, text: "", correcta: false, imatge: "https://e7.pngegg.com/pngimages/381/525/png-clipart-botequim-beer-heineken-international-tea-beer-emblem-label.png" },
+        { id: 3, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehXJ5KOIQXbeHar4hnd1XGxc-2LGy5pXZjA&s" },
+        { id: 4, text: "", correcta: false, imatge: "https://www.thesun.co.uk/wp-content/uploads/2024/10/stella-artois-beer-logo-938755734.jpg?strip=all&w=625" }
       ]
     },
     {
       id: 20,
       pregunta: "Quin logotip és Mitsubishi?",
       respostes: [
-        { id: 1, text: "Mitsubishi", correcta: true, imatge: "" },
-        { id: 2, text: "Mazda", correcta: false, imatge: ""},
-        { id: 3, resposta: "Toyota", correcta: false, imatge:""},
-        { id: 4, resposta: "Suzuki", correcta: false, imatge: ""}
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiz-n2bMuac0KJsrUyCqyPAoAOUo6YCR0LqQ&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://i.pinimg.com/736x/eb/b0/3e/ebb03eba30cd4880617d37b28215a31f.jpg"},
+        { id: 3, text: "", correcta: false, imatge:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe4NjDBNV6qTtkZsinVtjo6cIbTvklPnWHQ&s"},
+        { id: 4, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTIvWSbqiT-nX_x2aASbFnxSpKmn6-HQQHZQ&s"}
       ]
     }
   ]
