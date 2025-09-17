@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
   
     html += `<br><button id="següent" style="margin-top:20px;">Següent</button>`;
+    html += `<br><button id="enrere" style="margin-top:20px;">Enrere</button>`;
   
     contenidor.innerHTML = html;
   
@@ -36,6 +37,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         mostrarPregunta();
       } else {
         contenidor.innerHTML = `<h2>Has acabat el joc!</h2>`;
+      }
+    });
+
+    document.getElementById("enrere").addEventListener("click", () => {
+      if (current > 0) {
+        current--;
+        mostrarPregunta();
       }
     });
   }
