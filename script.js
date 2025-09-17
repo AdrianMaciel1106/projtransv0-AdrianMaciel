@@ -1,7 +1,7 @@
 import data from './data.js';
 
 const contenidor = document.getElementById("questionari");
-let current = 0; // índice de la pregunta actual
+let current = 13; // índice de la pregunta actual
 
 // Función para mostrar una pregunta
 function mostrarPregunta() {

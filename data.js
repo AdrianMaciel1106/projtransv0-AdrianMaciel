@@ -73,70 +73,70 @@ export default {
       id: 8,
       pregunta: "Quin és el logotip correcte d’Audi?",
       respostes: [
-        { id: 1, text: "Audi", correcta: true, imatge: "" },
-        { id: 2, text: "Volkswagen", correcta: false, imatge: "" },
-        { id: 3, text: "Skoda", correcta: false, imatge: "" },
-        { id: 4, text: "Seat", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://i.pinimg.com/474x/4c/34/ee/4c34eefba221546293d1032ae967eddc.jpg" },
+        { id: 2, text: "", correcta: false, imatge: "https://1000logos.net/wp-content/uploads/2019/12/Volkswagen-Logo-1948.png" },
+        { id: 3, text: "", correcta: false, imatge: "https://ahaslides.com/wp-content/uploads/2023/11/Skoda-Logo-2011-1024x576.png" },
+        { id: 4, text: "", correcta: false, imatge: "https://www.carlogos.org/car-logos/seat-logo.png" }
       ]
     },
     {
       id: 9,
       pregunta: "Quin d’aquests logos és Burberry?",
       respostes: [
-        { id: 1, text: "Burberry", correcta: true, imatge: "" },
-        { id: 2, text: "Gucci", correcta: false, imatge: "" },
-        { id: 3, text: "Prada", correcta: false, imatge: "" },
-        { id: 4, text: "Louis Vuitton", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8ZnuazW1wyHTHsBOEGj-DX-7GOrrhowEhLQ&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://www.infoplease.com/sites/infoplease.com/files/h5p/content/186/images/file-5e8c1a8d54f92.jpg" },
+        { id: 3, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzcBWNy_OArmyhL2Cm44b-wn7g14dwtzgtXQ&s" },
+        { id: 4, text: "", correcta: false, imatge: "https://img.buzzfeed.com/store-an-image-prod-us-east-1/cE4eBFtsB.png?downsize=625%3A*&output-format=jpg&output-quality=auto" }
       ]
     },
     {
       id: 10,
       pregunta: "Quin logotip és de Samsung?",
       respostes: [
-        { id: 1, text: "Samsung", correcta: true, imatge: "" },
-        { id: 2, text: "Huawei", correcta: false, imatge: "" },
-        { id: 3, text: "Apple", correcta: false, imatge: "" },
-        { id: 4, text: "Xiaomi", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh9axExasKJoaXSnBnr8vc25f-zDUuHSvh4A&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH9wxO5Dk0EyiRvjbFNx5yUo-DqP7kQ9zzqQ&s" },
+        { id: 3, text: "", correcta: false, imatge: "https://api.triviacreator.com/v1/imgs/quiz/8a7240d179-450-ceca425e-64e9-4495-94ac-53985e96b9d3.png" },
+        { id: 4, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLDnKyNDYRIaBX-ykpe42hTUOALPuiFAxZQg&s" }
       ]
     },
     {
       id: 11,
       pregunta: "Quin logotip representa Red Bull?",
       respostes: [
-        { id: 1, text: "Red Bull", correcta: true, imatge: "" },
-        { id: 2, text: "Monster", correcta: false, imatge: "" },
-        { id: 3, text: "Rockstar", correcta: false, imatge: "" },
-        { id: 4, text: "Burn", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://quiz.com/image-cache/uploads/0bb99152-2dc4-4603-9777-36fcfc942d98/a935a0468fb6dbf77a028409d9359dd9aef8e686.jpg.jpg?width=332&height=249&x=0.000&y=0.000&z=1.000" },
+        { id: 2, text: "", correcta: false, imatge: "https://media.baamboozle.com/uploads/images/670774/1680501528_144598.png" },
+        { id: 3, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGM9roUgk8PIr3NpMxgJ1USYU3iywjR6ifZQ&s" },
+        { id: 4, text: "", correcta: false, imatge: "https://1000marcas.net/wp-content/uploads/2021/04/Burn-Logo.png" }
       ]
     },
     {
       id: 12,
       pregunta: "Quin és el logotip de Rolex?",
       respostes: [
-        { id: 1, text: "Rolex", correcta: true, imatge: "" },
-        { id: 2, text: "Omega", correcta: false, imatge: "" },
-        { id: 3, text: "Tag Heuer", correcta: false, imatge: "" },
-        { id: 4, text: "Patek Philippe", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgSM_ompDWMN8qxKZDN1NnhhMb_uOmrslgig&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://cdn.quizly.co/wp-content/uploads/2025/02/14143050/Omega-logo.webp" },
+        { id: 3, text: "", correcta: false, imatge: "https://cdn.virily.com/wp-content/uploads/2017/07/image-6.jpg" },
+        { id: 4, text: "", correcta: false, imatge: "https://watchesulike.com/68424-large_default/patek-philippe-logo-to-stick-tm.jpg" }
       ]
     },
     {
       id: 13,
       pregunta: "Quin d’aquests és Calvin Klein?",
       respostes: [
-        { id: 1, text: "Calvin Klein", correcta: true, imatge: "" },
-        { id: 2, text: "Tommy Hilfiger", correcta: false, imatge: "" },
-        { id: 3, text: "Hugo Boss", correcta: false, imatge: "" },
-        { id: 4, text: "Guess", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpSM0ElKkWO3n6m7oQfWzJKOrcMriQWwV-bw&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://i.pinimg.com/736x/bd/03/30/bd0330279e1a0c076b5fd3cefd25cba9.jpg" },
+        { id: 3, text: "", correcta: false, imatge: "https://1000logos.net/wp-content/uploads/2021/11/Hugo-Boss-Logo-before-2021.png" },
+        { id: 4, text: "", correcta: false, imatge: "https://logosenvector.com/logo/img/guess-40.jpg" }
       ]
     },
     {
       id: 14,
       pregunta: "Quin logotip és d’Hermès?",
       respostes: [
-        { id: 1, text: "Hermès", correcta: true, imatge: "" },
-        { id: 2, text: "Hugo Boss", correcta: false, imatge: "" },
-        { id: 3, text: "Honda", correcta: false, imatge: "" },
-        { id: 4, text: "Hyundai", correcta: false, imatge: "" }
+        { id: 1, text: "", correcta: true, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdx5ssZYG5aXJfPveEZe6_awpqxHjcFYPWSA&s" },
+        { id: 2, text: "", correcta: false, imatge: "https://1000logos.net/wp-content/uploads/2021/11/Hugo-Boss-Logo-before-2021.png" },
+        { id: 3, text: "", correcta: false, imatge: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbd8_DZe3Tue4JXVj6aigAMkcrQq1xFGBaLQ&s" },
+        { id: 4, text: "", correcta: false, imatge: "https://1000logos.net/wp-content/uploads/2018/04/Hyundai-Logo-1990.png" }
       ]
     },
     {
