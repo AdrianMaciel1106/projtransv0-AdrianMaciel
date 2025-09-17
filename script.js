@@ -57,6 +57,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
   };
   
+  let temps = 30;
+  const display = document.getElementById('contador');
+
+  const interval = setInterval(() => {
+    display.textContent = temps;
+    temps--;
+
+    if (temps < 0) {
+      clearInterval(interval);
+      display.textContent = "TEMPS!";
+    }
+  }, 1000);
+
   mostrarPregunta();
 }
 )
