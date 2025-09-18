@@ -1,13 +1,21 @@
-import data from './data.js';
-
 window.addEventListener('DOMContentLoaded', (event) => {
   const contenidor = document.getElementById("questionari");
   let current = 0;
+  let data = null;
 
-  //fetch('http://a22adrmacfir.daw.inspedralbes.cat/data.json')
-  //.then(response => response.json())
-  //.then(pregunta => console.log(pregunta));
-  
+  fetch('http://a22adrmacfir.daw.inspedralbes.cat/data.json')
+    .then(response => response.json())
+    .then(json => {
+      data = json;
+
+      data.preguntes.forEach(p => {
+        p.respostes.sort(() => Math.random() - 0.5);
+      });
+
+      mostrarPregunta();
+    })
+    .catch(err => console.error('Error al cargar JSON:', err));
+
   data.preguntes.forEach(p => {
     p.respostes.sort(() => Math.random() - 0.5);
   });
@@ -26,12 +34,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
       `;
     });
   
-    html += `<br><button id="següent" style="margin-top:20px;">Següent</button>`;
+    html += `<br><button id="seguent" style="margin-top:20px;">Següent</button>`;
     html += `<br><button id="enrere" style="margin-top:20px;">Enrere</button>`;
   
     contenidor.innerHTML = html;
   
-    document.getElementById("següent").addEventListener("click", () => {
+    document.getElementById("seguent").addEventListener("click", () => {
       current++;
       if (current < data.preguntes.length) {
         mostrarPregunta();
