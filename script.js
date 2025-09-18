@@ -1,3 +1,5 @@
+import data from './data.js';
+
 window.addEventListener('DOMContentLoaded', (event) => {
   const contenidor = document.getElementById("questionari");
   let current = 0;
@@ -34,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       `;
     });
   
-    html += `<br><button id="seguent" style="margin-top:20px;">Següent</button>`;
+    html += `<br><button id="seguent" style="margin-top:20px;" class="btn btn-primary">Següent</button>`;
     html += `<br><button id="enrere" style="margin-top:20px;">Enrere</button>`;
   
     contenidor.innerHTML = html;
