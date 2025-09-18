@@ -18,7 +18,6 @@ $pregunta = $_SESSION['preguntas'][$index];
 <head>
     <meta charset="utf-8">
     <title>Pregunta <?= $index+1 ?> / <?= $total ?></title>
-    <style>body{font-family:Arial,sans-serif;padding:20px}</style>
 </head>
 <body>
     <h2>Pregunta <?= $index+1 ?> de <?= $total ?></h2>
@@ -34,6 +33,6 @@ $pregunta = $_SESSION['preguntas'][$index];
         <button type="submit">Enviar</button>
     </form>
 
-    <p>Puntuación actual: <?= intval($_SESSION['puntuacion']) ?> / <?= $total ?></p>
+    <p>Puntuació actual: <?= intval($_SESSION['puntuacion']) ?> / <?= $total ?></p>
 </body>
 </html>

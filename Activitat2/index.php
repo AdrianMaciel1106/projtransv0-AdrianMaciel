@@ -1,18 +1,20 @@
 <?php
 session_start();
 
-$jsonFile = __DIR__ . '/Quiz.json';
+$jsonFile = file_get_contents("/Quiz.json"); //Variable per agafar el contingut del fitxer Quiz.son
 
-if (!file_exists($jsonFile)) {
-    echo "<h2>Error:</h2><p>No se encontró el fichero Quiz.json en el directorio del proyecto.</p>";
+if (!file_exists($jsonFile)) { //Condicional per si no es troba el fitxer JSON. Retorna un missatge d'error
+    echo "<h2>Error:</h2><p>Mo s'ha trobat el fitxer Quiz.json.</p>";
     echo "<p><a href=\"https://github.com/googlearchive/android-Quiz/blob/master/Application/src/main/assets/Quiz.json\" target=\"_blank\">Descargar JSON original</a></p>";
     exit;
 }
 
-$raw = file_get_contents($jsonFile);
-$all = json_decode($raw, true);
+$raw = file_get_contents($jsonFile);//Variable raw per agafar el contingut de la variable jsonFile.
+
+$all = json_decode($raw, true); 
+
 if (!is_array($all) || count($all) < 10) {
-    echo "Fichero JSON inválido o con menos de 10 preguntas.";
+    echo "Fitxer JSON incorrecte o conté menys de 10 preguntes.";
     exit;
 }
 
@@ -50,12 +52,11 @@ $_SESSION['puntuacion'] = 0;
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Quiz - Inicio</title>
-    <style>body{font-family:Arial,sans-serif;padding:20px}</style>
+    <title>Quiz - Inici</title>
 </head>
 <body>
-    <h1>Juego de preguntas</h1>
-    <p>Se han seleccionado 10 preguntas al azar. ¿Listo?</p>
+    <h1>Joc de preguntes</h1>
+    <p>S'han seleccionat 10 preguntes a l'atzar.</p>
     <form action="pregunta.php" method="get">
         <button type="submit">Comenzar</button>
     </form>

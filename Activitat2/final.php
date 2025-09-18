@@ -12,16 +12,15 @@ session_unset();
 session_destroy();
 ?>
 <!doctype html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="utf-8">
-    <title>Puntuación final</title>
-    <style>body{font-family:Arial,sans-serif;padding:20px}</style>
+    <title>Puntuació final</title>
 </head>
 <body>
-    <h2>Has acertado <?= $aciertos ?> de <?= $total ?> preguntas.</h2>
+    <h2>Has encertat <?= $aciertos ?> de <?= $total ?> preguntes.</h2>
     <form action="index.php" method="get">
-        <button type="submit">Volver a empezar</button>
+        <button type="submit">Tornar a començar</button>
     </form>
 </body>
 </html>

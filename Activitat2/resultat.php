@@ -27,26 +27,25 @@ $total = count($_SESSION['preguntas']);
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Resultado</title>
-    <style>body{font-family:Arial,sans-serif;padding:20px}</style>
+    <title>Resultat</title>
 </head>
 <body>
     <?php if ($acierto): ?>
-        <h2>¡Correcto!</h2>
+        <h2>Correcte!</h2>
     <?php else: ?>
-        <h2>Incorrecto</h2>
-        <p>Respuesta correcta: <?= htmlspecialchars($pregunta['answers'][$correcta]) ?></p>
+        <h2>Incorrecte</h2>
+        <p>Resposta correcta: <?= htmlspecialchars($pregunta['answers'][$correcta]) ?></p>
     <?php endif; ?>
 
-    <p>Puntuación actual: <?= intval($_SESSION['puntuacion']) ?> / <?= $total ?></p>
+    <p>Puntuació actual: <?= intval($_SESSION['puntuacion']) ?> / <?= $total ?></p>
 
     <?php if ($_SESSION['index'] < $total): ?>
         <form action="pregunta.php" method="get">
-            <button type="submit">Siguiente</button>
+            <button type="submit">Següent</button>
         </form>
     <?php else: ?>
         <form action="final.php" method="get">
-            <button type="submit">Ver puntuación final</button>
+            <button type="submit">Veure puntuació final</button>
         </form>
     <?php endif; ?>
 </body>
