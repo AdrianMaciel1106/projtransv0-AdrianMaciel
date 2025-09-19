@@ -3,7 +3,6 @@ import data from './data.js';
 window.addEventListener('DOMContentLoaded', (event) => {
   const contenidor = document.getElementById("questionari");
   let current = 0;
-  let data = null;
 
   fetch('http://a22adrmacfir.daw.inspedralbes.cat/data.json')
     .then(response => response.json())
