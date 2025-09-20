@@ -2,11 +2,11 @@
 header('Content-Type: application/json; charset=utf-8');
 session_start();
 
-// Exemple de preguntes internes
+// Banco de preguntas
 $all = [
   ['id'=>1, 'pregunta'=>'Quin color té el cel?', 'respostes'=>[['text'=>'Blau'],['text'=>'Verd'],['text'=>'Vermell']], 'correctIndex'=>0],
   ['id'=>2, 'pregunta'=>'2+2=?', 'respostes'=>[['text'=>'3'],['text'=>'4'],['text'=>'5']], 'correctIndex'=>1],
-  ['id'=>3, 'pregunta'=>'Capital d\'Espanya?', 'respostes'=>[['text'=>'Madrid'],['text'=>'Barcelona'],['text'=>'València']], 'correctIndex'=>0]
+  ['id'=>3, 'pregunta'=>'Capital d\'Espanya?', 'respostes'=>[['text'=>'Madrid'],['text'=>'Barcelona'],['text'=>'València']], 'correctIndex'=>0],
   ['id'=>4, 'pregunta'=>'Quin és l\'oceà més gran del món?', 'respostes'=>[['text'=>'Atlàntic'],['text'=>'Pacífic'],['text'=>'Índic']], 'correctIndex'=>1],
   ['id'=>5, 'pregunta'=>'Quin planeta és conegut com el planeta vermell?', 'respostes'=>[['text'=>'Mart'],['text'=>'Júpiter'],['text'=>'Venus']], 'correctIndex'=>0],
   ['id'=>6, 'pregunta'=>'Quin animal és el més ràpid a terra?', 'respostes'=>[['text'=>'Guepard'],['text'=>'Cavall'],['text'=>'Lleó']], 'correctIndex'=>0],
@@ -19,19 +19,16 @@ $all = [
   ['id'=>13, 'pregunta'=>'Quin gas respiren principalment els humans?', 'respostes'=>[['text'=>'Diòxid de carboni'],['text'=>'Oxigen'],['text'=>'Nitrogen']], 'correctIndex'=>1],
 ];
 
-// Llegir n i validar
-$n = isset($_GET['n']) ? max(1, intval($_GET['n'])) : 1;
-$n = min($n, count($all));
+$n = min(10, count($all)); // punto y coma añadido
 
-// Seleccionar aleatòries
 shuffle($all);
 $sel = array_slice($all, 0, $n);
 
-// Guardar mapping id -> correctIndex per validar després
 $_SESSION['answers'] = [];
-foreach ($sel as $p) $_SESSION['answers'][$p['id']] = $p['correctIndex'];
+foreach ($sel as $p) {
+    $_SESSION['answers'][$p['id']] = $p['correctIndex'];
+}
 
-// Retornar preguntes sense correctIndex
 $public = array_map(function($p){
   return ['id'=>$p['id'],'pregunta'=>$p['pregunta'],'respostes'=>$p['respostes']];
 }, $sel);

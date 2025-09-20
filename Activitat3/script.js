@@ -1,56 +1,48 @@
 let data = null;
 let current = 0;
+const userAnswers = [];
 
 window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('questionari');
-  const result = document.getElementById('contador'); // opcional: muestra número de pregunta
-  
-  const n = 10;
+  const result = document.getElementById('contador');
 
-  // 1) Cargar preguntas desde el servidor
-  fetch(`./getPreguntes.php?n=${n}`)
+  fetch('getPreguntes.php')
     .then(r => {
       if (!r.ok) throw new Error('Error al cargar preguntas');
       return r.json();
     })
     .then(json => {
-      // El PHP devuelve un ARRAY de preguntes. Normalizamos a data.preguntes
       data = { preguntes: Array.isArray(json) ? json : (json.preguntes || []) };
-
       if (!data.preguntes || data.preguntes.length === 0) {
         container.textContent = 'No hay preguntas.';
         return;
       }
-      showQuestion(); // tu función que renderiza una pregunta
+      showQuestion();
     })
     .catch(err => {
       container.textContent = 'Error cargando preguntas.';
       console.error(err);
     });
 
-  // 2) Mostrar la pregunta actual
   function showQuestion() {
     const preguntas = data.preguntes;
-    if (current < 0) current = 0;
     if (current >= preguntas.length) {
-      container.innerHTML = '<h2>Fin del cuestionario</h2>';
+      submitAnswers();
       return;
     }
 
     const p = preguntas[current];
-    // título
     let html = `<h2>${current + 1}. ${p.pregunta}</h2>`;
 
-    // opciones (radio buttons para escoger una)
     p.respostes.forEach((opt, i) => {
+      const checked = (userAnswers[current] === i) ? 'checked' : '';
       html += `
         <label style="display:block; margin:6px 0;">
-          <input type="radio" name="q" value="${i}"> ${opt.text || opt}
+          <input type="radio" name="q" value="${i}" ${checked}> ${opt.text}
         </label>
       `;
     });
 
-    // controles sencillo: anterior / siguiente
     html += `
       <div style="margin-top:10px;">
         <button id="prev">Anterior</button>
@@ -59,17 +51,44 @@ window.addEventListener('DOMContentLoaded', () => {
     `;
 
     container.innerHTML = html;
-    if (result) result.textContent = `${current + 1} / ${preguntas.length}`;
+    result.textContent = `${current + 1} / ${preguntas.length}`;
 
-    // 3) handlers de botones
     document.getElementById('prev').addEventListener('click', () => {
+      saveCurrentAnswer();
       if (current > 0) current--;
       showQuestion();
     });
     document.getElementById('next').addEventListener('click', () => {
-      // aquí podrías leer la respuesta seleccionada antes de avanzar
+      saveCurrentAnswer();
       current++;
       showQuestion();
     });
   }
+
+  function saveCurrentAnswer() {
+    const sel = document.querySelector('input[name="q"]:checked');
+    userAnswers[current] = sel ? parseInt(sel.value, 10) : -1;
+  }
+
+  function submitAnswers() {
+    const body = {
+      answers: data.preguntes.map((p, idx) => ({
+        id: p.id,
+        chosen: userAnswers[idx] ?? -1
+      }))
+    };
+
+    fetch('finalitza.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+      .then(r => r.json())
+      .then(res => {
+        container.innerHTML = `<h2>Resultats</h2>
+                               <p><strong>Total:</strong> ${res.total} — <strong>Correctes:</strong> ${res.correctes}</p>`;
+        result.textContent = '';
+      });
+  }
 });
+
