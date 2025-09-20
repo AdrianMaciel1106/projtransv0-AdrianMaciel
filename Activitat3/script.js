@@ -5,8 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('questionari');
   const result = document.getElementById('contador'); // opcional: muestra número de pregunta
   
-  const nEl = document.getElementById('num');
-  const n = nEl ? Math.max(1, parseInt(nEl.value, 10) || 1) : 5;
+  const n = 3;
 
   // 1) Cargar preguntas desde el servidor
   fetch(`./getPreguntes.php?n=${n}`)
