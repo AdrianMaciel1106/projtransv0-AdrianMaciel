@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const n = nEl ? Math.max(1, parseInt(nEl.value, 10) || 1) : 5;
 
   // 1) Cargar preguntas desde el servidor
-  fetch(`getPreguntes.php?n=${n}`)
+  fetch(`./getPreguntes.php?n=${n}`)
     .then(r => {
       if (!r.ok) throw new Error('Error al cargar preguntas');
       return r.json();
