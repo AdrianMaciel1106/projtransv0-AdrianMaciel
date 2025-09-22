@@ -38,6 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
       console.error(err);
     });
 
+    
   // ----- Mostrar pregunta -----
   function showQuestion() {
     const preguntes = data.preguntes;
