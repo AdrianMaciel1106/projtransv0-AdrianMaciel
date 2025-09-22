@@ -1,82 +1,70 @@
-let data = null; //Definim la variable global per a les dades
-let current = 0; //Definim la variable global per a la pregunta actual
-let answers = []; //Definim la variable global per a les respostes
+let data = null; // Dades del quiz
+let current = 0; // Índex de la pregunta actual
+let answers = [];// Respostes escollides per l’usuari
+let timer = null;// Referència al temporitzador
 
-// Definim la funció principal que s'executa quan el document (DOM) està carregat
+//Definim les funcions quan el DOM està carregat
 window.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('questionari'); // Contenidor de preguntes
+  const result    = document.getElementById('contador'); // Contador de preguntes
 
-  const container = document.getElementById('questionari'); //Contenidor de les preguntes
-  const result = document.getElementById('contador'); //Contenidor del resultat
-
-  // 1) Carregar preguntes des del servidor
-  fetch(`getPreguntes.php?n=${n}`)
-    // Si no s'ha pogut carregar, llencem un error
+  // 1) Carregar preguntes del servidor
+  fetch('./getPreguntes.php')
     .then(r => {
       if (!r.ok) throw new Error('Error al carregar preguntes');
       return r.json();
     })
-
-    // Si s'ha carregat correctament, processem les dades
     .then(json => {
-      data = { preguntes: Array.isArray(json) ? json : (json.preguntes || []) };
+      data = { preguntes: Array.isArray(json) ? json : [] };
 
-      // Comprovem si hi ha preguntes
-      if (!data.preguntes || data.preguntes.length === 0) {
+      if (!data.preguntes.length) {
         container.textContent = 'No hi ha preguntes.';
         return;
       }
 
-      // Barregem les preguntes
+      // Barregem respostes dins de cada pregunta
       data.preguntes.forEach(p => {
         if (Array.isArray(p.respostes)) {
           p.respostes.sort(() => Math.random() - 0.5);
         }
       });
 
-      // Iniciar temporizador de 30 segundos
-      startTimer();
-
-      // Mostrar la primera pregunta
+      startTimer();   // 30 segons
       showQuestion();
     })
-
-    // Si hi ha un error, mostrem un missatge
     .catch(err => {
       container.textContent = 'Error carregant preguntes.';
       console.error(err);
     });
 
-
-  // 2) Funció per mostrar pregunta actual
+  // ----- Mostrar pregunta -----
   function showQuestion() {
-    const preguntes = data.preguntes; // Array de preguntes
+    const preguntes = data.preguntes;
 
-    // Comprovem els limits de l'index actual dins de l'array
     if (current < 0) current = 0;
     if (current >= preguntes.length) {
       showEndScreen();
       return;
     }
 
-    const p = preguntes[current]; //Definim variable per a la pregunta actual
-    let html = `<h2>${current + 1}. ${p.pregunta}</h2>`; //Mostrem la pregunta actual
+    const p = preguntes[current];
+    let html = `<h2>${current + 1}. ${p.pregunta}</h2>`;
 
-    // Imatge principal de la pregunta (si existeix)
     if (p.imatge) {
       html += `<img src="${p.imatge}" alt="imatge de la pregunta" style="max-width:200px; display:block; margin:10px auto;">`;
     }
 
-    // Opciones de respuesta
+    // Llistat d’opcions
     p.respostes.forEach((opt, i) => {
       html += `
         <button class="resposta" data-index="${i}" style="display:block; margin:10px auto; padding:10px; cursor:pointer;">
-          ${opt.imatge ? `<img src="${opt.imatge}" alt="${opt.resposta}" style="max-width:100px; display:block; margin:auto;">` : ""}
-          <span>${opt.resposta}</span>
+          ${opt.imatge ? `<img src="${opt.imatge}" alt="" style="max-width:100px; display:block; margin:auto;">` : ""}
+          ${opt.text || ""}
         </button>
       `;
     });
 
-    // Controls: anterior / següent
+    // Botons de navegació
     html += `
       <div style="margin-top:20px;">
         <button id="prev" ${current === 0 ? "disabled" : ""}>Anterior</button>
@@ -84,18 +72,20 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    container.innerHTML = html; //Actualitzem el contenidor amb la pregunta i respostes
-    if (result) result.textContent = `${current + 1} / ${preguntes.length}`; //Actualitzem el comptador de preguntes si existeix
+    container.innerHTML = html;
+    if (result) result.textContent = `${current + 1} / ${preguntes.length}`;
 
-    // Handlers de botons de resposta
+    // Events respostes
     container.querySelectorAll(".resposta").forEach(btn => {
       btn.addEventListener("click", () => {
-        const idx = parseInt(btn.dataset.index, 10);
-        marcarResposta(idx);
+        answers[current] = parseInt(btn.dataset.index, 10);
+        // marquem visualment
+        container.querySelectorAll(".resposta").forEach(b => b.style.background = "");
+        btn.style.background = "#d0f0d0";
       });
     });
 
-    // Handlers de navegació quan l'usuari fa clic als botons d'anterior i següent
+    // Navegació
     document.getElementById('prev').addEventListener('click', () => {
       if (current > 0) current--;
       showQuestion();
@@ -106,46 +96,31 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3) Funció per marcar resposta
-  function marcarResposta(index) {
-    const pregunta = data.preguntes[current];
-    const resposta = pregunta.respostes[index];
-
-    // Comprovem si la resposta és correcta
-    if (resposta.correcta) {
-      alert("Correcte!");
-      answers[current] = true;
-    } else {
-      alert("Incorrecte!");
-      answers[current] = false;
-    }
-  }
-
-  // 4) Temporitzador de 30 segons
+  // Iniciar temporitzador
   function startTimer() {
-    let temps = 30; // Segons
-    const display = document.getElementById('contador'); // Contenidor del temporitzador
+    let temps = 30;
+    const display = document.getElementById('contador');
 
-    // Actualitzem el temporitzador cada segon
-    const interval = setInterval(() => {
+    timer = setInterval(() => {
       display.textContent = `${temps}s`;
       temps--;
 
-      // Quan el temps s'acaba, mostrem la pantalla final
       if (temps < 0) {
-        clearInterval(interval);
+        clearInterval(timer);
         display.textContent = "TEMPS!";
         showEndScreen();
       }
     }, 1000);
   }
 
-  // 5) Pantalla final
+  //Mostrar pantalla final
   function showEndScreen() {
-    const correctes = answers.filter(x => x === true).length; // Comptem les respostes correctes
+    clearInterval(timer);
+
     container.innerHTML = `
       <h2>Fi del joc!</h2>
-      <p>Has encertat ${correctes} de ${data.preguntes.length} preguntes.</p>
+      <p>Has contestat ${answers.filter(a => a !== undefined).length} de ${data.preguntes.length} preguntes.</p>
+      <p>(La correcció es farà al servidor quan enviïs les respostes)</p>
     `;
   }
 });

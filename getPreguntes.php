@@ -206,19 +206,27 @@ $all = [
   ]
 ];
 
-$n = min(10, count($all)); // Nombre de preguntes a seleccionar
+shuffle($all); // Si quieres que salgan en orden aleatorio
+$sel = $all; // Como siempre serán 20, no hace falta array_slice
 
-shuffle($all);  // Barregem les preguntes
-$sel = array_slice($all, 0, $n);  // Seleccionem les primeres $n preguntes
-
-$_SESSION['answers'] = []; // Inicialitzem array de respostes correctes
+$_SESSION['answers'] = []; // Inicializamos array de respuestas correctas
 foreach ($sel as $p) {
-    $_SESSION['answers'][$p['id']] = $p['correctIndex']; // Guardem l'índex de la resposta correcta per a cada pregunta
+    // Guardamos el índice de la respuesta correcta
+    $_SESSION['answers'][$p['id']] =
+        array_search(true, array_column($p['respostes'], 'correcta'));
 }
 
-// Preparem les preguntes per enviar-les al client (sense la informació de quina és la resposta correcta)
+// Quitamos el campo "correcta" antes de enviar al cliente
 $public = array_map(function($p){
-  return ['id'=>$p['id'],'pregunta'=>$p['pregunta'],'respostes'=>$p['respostes']];
+    $respostes = array_map(function($r){
+        unset($r['correcta']);
+        return $r;
+    }, $p['respostes']);
+    return [
+        'id'       => $p['id'],
+        'pregunta' => $p['pregunta'],
+        'respostes'=> $respostes
+    ];
 }, $sel);
 
-echo json_encode($public); // Retornem les preguntes en format JSON
+echo json_encode($public, JSON_UNESCAPED_UNICODE); // Enviem dades al client
