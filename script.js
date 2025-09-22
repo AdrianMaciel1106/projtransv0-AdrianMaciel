@@ -99,21 +99,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Iniciar temporitzador
   function startTimer() {
-    let temps = 30;
+  let temps = 30;
 
-    if (!tiempoCounter) return;
-    timer = setInterval(() => {
-      display.textContent = `${temps}s`;
+  if (!tiempoCounter) return;
+
+  tiempoCounter.textContent = `${temps}s`; // valor inicial
+
+  timer = setInterval(() => {
+    temps--;
+    if (temps >= 0) {
+      tiempoCounter.textContent = `${temps}s`;
+    } else {
+      clearInterval(timer);
       tiempoCounter.textContent = "TEMPS!";
-      temps--;
-
-      if (temps < 0) {
-        clearInterval(timer);
-        display.textContent = "TEMPS!";
-        showEndScreen();
-      }
-    }, 1000);
-  }
+      showEndScreen();
+    }
+  }, 1000);
+}
 
   //Mostrar pantalla final
   function showEndScreen() {
