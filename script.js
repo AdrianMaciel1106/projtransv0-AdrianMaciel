@@ -6,7 +6,8 @@ let timer = null;// Referència al temporitzador
 //Definim les funcions quan el DOM està carregat
 window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('questionari'); // Contenidor de preguntes
-  const result    = document.getElementById('contador'); // Contador de preguntes
+  const preguntaCounter = document.getElementById('contador-pregunta'); // Contador de preguntes
+  const tiempoCounter   = document.getElementById('contador-tiempo'); // Contador de temps
 
   // 1) Carregar preguntes del servidor
   fetch('./getPreguntes.php')
@@ -73,7 +74,7 @@ window.addEventListener('DOMContentLoaded', () => {
     `;
 
     container.innerHTML = html;
-    if (result) result.textContent = `${current + 1} / ${preguntes.length}`;
+    if (preguntaCounter) preguntaCounter.textContent = `${current + 1} / ${preguntes.length}`;
 
     // Events respostes
     container.querySelectorAll(".resposta").forEach(btn => {
@@ -99,10 +100,11 @@ window.addEventListener('DOMContentLoaded', () => {
   // Iniciar temporitzador
   function startTimer() {
     let temps = 30;
-    const display = document.getElementById('contador');
 
+    if (!tiempoCounter) return;
     timer = setInterval(() => {
       display.textContent = `${temps}s`;
+      tiempoCounter.textContent = "TEMPS!";
       temps--;
 
       if (temps < 0) {
