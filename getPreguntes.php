@@ -211,13 +211,14 @@ $n = min(10, count($all)); // Nombre de preguntes a seleccionar
 shuffle($all);  // Barregem les preguntes
 $sel = array_slice($all, 0, $n);  // Seleccionem les primeres $n preguntes
 
-$_SESSION['answers'] = [];
+$_SESSION['answers'] = []; // Inicialitzem array de respostes correctes
 foreach ($sel as $p) {
-    $_SESSION['answers'][$p['id']] = $p['correctIndex'];
+    $_SESSION['answers'][$p['id']] = $p['correctIndex']; // Guardem l'índex de la resposta correcta per a cada pregunta
 }
 
+// Preparem les preguntes per enviar-les al client (sense la informació de quina és la resposta correcta)
 $public = array_map(function($p){
   return ['id'=>$p['id'],'pregunta'=>$p['pregunta'],'respostes'=>$p['respostes']];
 }, $sel);
 
-echo json_encode($public);
+echo json_encode($public); // Retornem les preguntes en format JSON
