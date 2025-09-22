@@ -1,3 +1,5 @@
+// https://github.com/alvaroph/tr0_daw
+
 let data = null; // Dades del quiz
 let current = 0; // Índex de la pregunta actual
 let answers = [];// Respostes escollides per l’usuari
