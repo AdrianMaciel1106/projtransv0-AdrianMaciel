@@ -73,8 +73,8 @@ window.addEventListener('DOMContentLoaded', () => {
     // Botons de navegació
     html += `
       <div>
-        <button id="enrere" ${current === 0 ? "disabled" : ""}>Anterior</button>
-        <button id="seguent">Següent</button>
+        <button class="botons-navegacio" id="enrere" ${current === 0 ? "disabled" : ""}>Anterior</button>
+        <button class="botons-navegacio" id="seguent">Següent</button>
       </div>
     `;
 
@@ -84,13 +84,17 @@ window.addEventListener('DOMContentLoaded', () => {
     if (preguntaCounter) preguntaCounter.textContent = `${current + 1} / ${preguntes.length}`;
 
     // Events respostes
-    container.querySelectorAll(".resposta").forEach(btn => {
+    const respostaButtons = container.querySelectorAll(".resposta");
+    respostaButtons.forEach((btn, i) => {
       btn.addEventListener("click", () => {
-        answers[current] = parseInt(btn.dataset.index, 10);
-        // marquem visualment
-        container.querySelectorAll(".resposta").forEach(b => b.style.background = "");
-        btn.style.background = "#d0f0d0";
+        answers[current] = i;
+        respostaButtons.forEach(b => b.classList.remove("seleccionada"));
+        btn.classList.add("seleccionada");
       });
+      // Marcar la opción seleccionada si existe
+      if (answers[current] === i) {
+        btn.classList.add("seleccionada");
+      }
     });
 
     // Navegació
@@ -139,7 +143,11 @@ window.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = `
       <h2>Fi del joc!</h2>
       <p>Has contestat ${answers.filter(a => a !== undefined).length} de ${data.preguntes.length} preguntes.</p>
-      <p>(La correcció es farà al servidor quan enviïs les respostes)</p>
+      <button id="reiniciar" class="botons-navegacio">Reiniciar</button>
     `;
+    document.getElementById('reiniciar').addEventListener('click', () => {
+      current = 0;
+      showQuestion();
+    });
   }
 });

@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Raleway', sans-serif;
     text-align: center;
     background: #f8f8f8;
     margin: 0;
@@ -9,7 +9,7 @@ body {
 #questionari img {
     max-width: 9rem;
     max-height: 9rem;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
     display: block;
     background: #f8f8f8;
 }
@@ -26,6 +26,7 @@ body {
 
 button.resposta {
     background: #f8f8f8;
+    cursor: pointer;
     border: 2px solid #e0e0e0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     border-radius: 1rem;
@@ -46,27 +47,38 @@ button.resposta img {
     background: #f8f8f8;
     max-width: 100px;
     margin-bottom: 0.5rem;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button.resposta:hover {
     background: #d0f0d0;
     border-color: #0d6efd;
+    border: solid 5px #0d6efd;
     color: #0d6efd;
 }
-    
-#seguent {
-    width: 7rem;
-    height: 3rem;
-    margin: 1rem;
+
+button.resposta.seleccionada {
+    background: #d0f0d0;
+    border-color: #0d6efd;
+    color: #0d6efd;
 }
 
-#enrere {
+.botons-navegacio {
+    border-radius: 1rem;
+    cursor: pointer;
     width: 7rem;
     height: 3rem;
     margin: 1rem;
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+.botons-navegacio:hover {
+    background: #d0f0d0;
+    border-color: #0d6efd;
+    color: #0d6efd;
 }
 
 #contador-pregunta, #contador-tiempo {
