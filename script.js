@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      //startTimer();   // 30 segons
+      startTimer();   // 30 segons
       showQuestion();
     })
     .catch(err => {
@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', () => {
   timer = setInterval(() => {
     temps--;
     if (temps >= 0) {
-      tiempoCounter.textContent = `${temps}s`; // Actualitzar comptador
+      tiempoCounter.textContent = formatTime(temps); // Actualitzar comptador en formato mm:ss
     } else {
       clearInterval(timer); // Aturar el temporitzador
       tiempoCounter.textContent = "TEMPS!"; // Indicar que s'ha acabat el temps
@@ -128,12 +128,12 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }, 1000); // Actualitzar cada segon
 
-  // Funció per formatar temps en mm:ss
+  // Funció per formatar temps en m:ss
   function formatTime(seconds) {
-  const mins = Math.floor(seconds / 60);// minuts
-  const secs = seconds % 60;// segons
-  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;// format mm:ss
-}
+    const mins = Math.floor(seconds / 60);// minuts
+    const secs = seconds % 60;// segons
+    return `${mins}:${secs.toString().padStart(2, '0')}`;// format m:ss
+  }
 }
 
   //Mostrar pantalla final
