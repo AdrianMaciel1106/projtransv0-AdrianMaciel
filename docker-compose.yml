@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  web:
+    image: php:8.2-apache
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html:ro
+    restart: unless-stopped
