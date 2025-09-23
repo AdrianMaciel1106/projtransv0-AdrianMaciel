@@ -8,10 +8,10 @@ $all = [
     'id' => 1,
     'pregunta' => "Quin d’aquests és el logotip correcte de BMW?",
     'respostes' => [
-      [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "https://upload.wikimedia.org/wikipedia/commons/4/45/BMW_White-Colour_RGB.png" ],
+      [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "logos/bmw.png" ],
       [ 'id' => 2, 'text' => "", 'correcta' => false, 'imatge' => "https://static.vecteezy.com/system/resources/previews/019/766/236/non_2x/audi-logo-audi-icon-transparent-free-png.png" ],
       [ 'id' => 3, 'text' => "", 'correcta' => false, 'imatge' => "https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg" ],
-      [ 'id' => 4, 'text' => "", 'correcta' => false, 'imatge' => "https://img.favpng.com/25/15/1/lexus-rx-toyota-car-lexus-is-png-favpng-Yze7fea0XAzjBUzyaphuWBR4S.jpg" ]
+      [ 'id' => 4, 'text' => "", 'correcta' => false, 'imatge' => "logos/lexus.png" ]
     ]
   ],
   [
@@ -20,7 +20,7 @@ $all = [
     'respostes' => [
       [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "https://api.triviacreator.com/v1/imgs/quiz/8a7240d179-450-ceca425e-64e9-4495-94ac-53985e96b9d3.png" ],
       [ 'id' => 2, 'text' => "", 'correcta' => false, 'imatge' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh9axExasKJoaXSnBnr8vc25f-zDUuHSvh4A&s" ],
-      [ 'id' => 3, 'text' => "", 'correcta' => false, 'imatge' => "https://pluspng.com/logo-img/so142sond681-sony-logo-sony-group-portal-home.png" ],
+      [ 'id' => 3, 'text' => "", 'correcta' => false, 'imatge' => "logos/sony.png" ],
       [ 'id' => 4, 'text' => "", 'correcta' => false, 'imatge' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH9wxO5Dk0EyiRvjbFNx5yUo-DqP7kQ9zzqQ&s" ]
     ]
   ],
@@ -110,7 +110,7 @@ $all = [
     'respostes' => [
       [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "https://quiz.com/image-cache/uploads/0bb99152-2dc4-4603-9777-36fcfc942d98/a935a0468fb6dbf77a028409d9359dd9aef8e686.jpg.jpg?width=332&height=249&x=0.000&y=0.000&z=1.000" ],
       [ 'id' => 2, 'text' => "", 'correcta' => false, 'imatge' => "https://media.baamboozle.com/uploads/images/670774/1680501528_144598.png" ],
-      [ 'id' => 3, 'text' => "", 'correcta' => false, 'imatge' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGM9roUgk8PIr3NpMxgJ1USYU3iywjR6ifZQ&s" ],
+      [ 'id' => 3, 'text' => "", 'correcta' => false, 'imatge' => "logos/rockstar.png" ],
       [ 'id' => 4, 'text' => "", 'correcta' => false, 'imatge' => "https://1000marcas.net/wp-content/uploads/2021/04/Burn-Logo.png" ]
     ]
   ],
@@ -118,7 +118,7 @@ $all = [
     'id' => 12,
     'pregunta' => "Quin és el logotip de Rolex?",
     'respostes' => [
-      [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgSM_ompDWMN8qxKZDN1NnhhMb_uOmrslgig&s" ],
+      [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "logos/rolex.png" ],
       [ 'id' => 2, 'text' => "", 'correcta' => false, 'imatge' => "https://cdn.quizly.co/wp-content/uploads/2025/02/14143050/Omega-logo.webp" ],
       [ 'id' => 3, 'text' => "", 'correcta' => false, 'imatge' => "https://cdn.virily.com/wp-content/uploads/2017/07/image-6.jpg" ],
       [ 'id' => 4, 'text' => "", 'correcta' => false, 'imatge' => "https://watchesulike.com/68424-large_default/patek-philippe-logo-to-stick-tm.jpg" ]
@@ -188,8 +188,8 @@ $all = [
     'id' => 19,
     'pregunta' => "Quin logotip és Corona (cervesa)?",
     'respostes' => [
-      [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "https://i.insider.com/50083a7869beddb547000002?width=600&format=jpeg&auto=webp" ],
-      [ 'id' => 2, 'text' => "", 'correcta' => false, 'imatge' => "https://e7.pngegg.com/pngimages/381/525/png-clipart-botequim-beer-heineken-international-tea-beer-emblem-label.png" ],
+      [ 'id' => 1, 'text' => "", 'correcta' => true, 'imatge' => "logos/corona.png" ],
+      [ 'id' => 2, 'text' => "", 'correcta' => false, 'imatge' => "logos/heineken.png" ],
       [ 'id' => 3, 'text' => "", 'correcta' => false, 'imatge' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehXJ5KOIQXbeHar4hnd1XGxc-2LGy5pXZjA&s" ],
       [ 'id' => 4, 'text' => "", 'correcta' => false, 'imatge' => "https://www.thesun.co.uk/wp-content/uploads/2024/10/stella-artois-beer-logo-938755734.jpg?strip=all&w=625" ]
     ]
