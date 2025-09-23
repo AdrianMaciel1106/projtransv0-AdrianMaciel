@@ -51,8 +51,8 @@ window.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const p = preguntes[current];
-    let html = `<h2>${current + 1}. ${p.pregunta}</h2>`;
+    const p = preguntes[current]; // Pregunta actual
+    let html = `<h2>${current + 1}. ${p.pregunta}</h2>`;  // Títol pregunta
 
     if (p.imatge) {
       html += `<img src="${p.imatge}" alt="imatge de la pregunta" style="max-width:200px; display:block; margin:10px auto;">`;
@@ -102,27 +102,35 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Iniciar temporitzador
   function startTimer() {
-  let temps = 30;
+  let temps = 30; // segons
 
-  if (!tiempoCounter) return;
+  if (!tiempoCounter) return; // Si no hi ha element, sortim
 
-  tiempoCounter.textContent = `${temps}s`; // valor inicial
+  tiempoCounter.textContent = formatTime(temps); // Mostrar temps inicial
 
+  // Netejar qualsevol temporitzador anterior
   timer = setInterval(() => {
     temps--;
     if (temps >= 0) {
-      tiempoCounter.textContent = `${temps}s`;
+      tiempoCounter.textContent = `${temps}s`; // Actualitzar comptador
     } else {
-      clearInterval(timer);
-      tiempoCounter.textContent = "TEMPS!";
-      showEndScreen();
+      clearInterval(timer); // Aturar el temporitzador
+      tiempoCounter.textContent = "TEMPS!"; // Indicar que s'ha acabat el temps
+      showEndScreen(); // Mostrar pantalla final
     }
-  }, 1000);
+  }, 1000); // Actualitzar cada segon
+
+  // Funció per formatar temps en mm:ss
+  function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);// minuts
+  const secs = seconds % 60;// segons
+  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;// format mm:ss
+}
 }
 
   //Mostrar pantalla final
   function showEndScreen() {
-    clearInterval(timer);
+    clearInterval(timer);   // Aturar temporitzador
 
     container.innerHTML = `
       <h2>Fi del joc!</h2>
