@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      startTimer();   // 30 segons
+      //startTimer();   // 30 segons
       showQuestion();
     })
     .catch(err => {
@@ -58,23 +58,27 @@ window.addEventListener('DOMContentLoaded', () => {
       html += `<img src="${p.imatge}" alt="imatge de la pregunta" style="max-width:200px; display:block; margin:10px auto;">`;
     }
 
-    // Llistat d’opcions
-    p.respostes.forEach((opt, i) => {
-      html += `
-        <button class="resposta" data-index="${i}" style="display:block; margin:10px auto; padding:10px; cursor:pointer;">
-          ${opt.imatge ? `<img src="${opt.imatge}" alt="" style="max-width:100px; display:block; margin:auto;">` : ""}
-          ${opt.text || ""}
-        </button>
-      `;
-    });
+      // Llistat d’opcions dentro de un contenedor flex
+      html += `<div class="resposta-container">`;
+      p.respostes.forEach((opt, i) => {
+        html += `
+          <button class="resposta" data-index="${i}">
+            ${opt.imatge ? `<img src="${opt.imatge}" alt="">` : ""}
+            ${opt.text || ""}
+          </button>
+        `;
+      });
+      html += `</div>`;
 
     // Botons de navegació
     html += `
-      <div style="margin-top:20px;">
+      <div>
         <button id="enrere" ${current === 0 ? "disabled" : ""}>Anterior</button>
         <button id="seguent">Següent</button>
       </div>
     `;
+
+    html += `<h3>Pregunta ${current + 1} de ${preguntes.length}</h3>`;
 
     container.innerHTML = html;
     if (preguntaCounter) preguntaCounter.textContent = `${current + 1} / ${preguntes.length}`;
