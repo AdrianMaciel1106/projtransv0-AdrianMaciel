@@ -71,8 +71,8 @@ window.addEventListener('DOMContentLoaded', () => {
     // Botons de navegació
     html += `
       <div style="margin-top:20px;">
-        <button id="prev" ${current === 0 ? "disabled" : ""}>Anterior</button>
-        <button id="next">Següent</button>
+        <button id="enrere" ${current === 0 ? "disabled" : ""}>Anterior</button>
+        <button id="seguent">Següent</button>
       </div>
     `;
 
@@ -90,11 +90,11 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     // Navegació
-    document.getElementById('prev').addEventListener('click', () => {
+    document.getElementById('enrere').addEventListener('click', () => {
       if (current > 0) current--;
       showQuestion();
     });
-    document.getElementById('next').addEventListener('click', () => {
+    document.getElementById('seguent').addEventListener('click', () => {
       current++;
       showQuestion();
     });

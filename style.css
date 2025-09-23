@@ -16,5 +16,13 @@ button {
     font-size: 1rem;
     cursor: pointer;
 }
-.correcte { background: #4caf50; color: white; }
-.incorrecte { background: #f44336; color: white; }
+    
+#seguent {
+    width: 3rem;
+    height: 3rem;
+}
+
+#enrere {
+    width: 3rem;
+    height: 3rem;
+}
