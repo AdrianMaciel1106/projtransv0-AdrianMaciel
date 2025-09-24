@@ -217,16 +217,19 @@ foreach ($sel as $p) {
 }
 
 // Quitamos el campo "correcta" antes de enviar al cliente
+
 $public = array_map(function($p){
-    $respostes = array_map(function($r){
-        unset($r['correcta']);
-        return $r;
-    }, $p['respostes']);
-    return [
-        'id'       => $p['id'],
-        'pregunta' => $p['pregunta'],
-        'respostes'=> $respostes
-    ];
+  $respostes = array_map(function($r){
+    unset($r['correcta']);
+    return $r;
+  }, $p['respostes']);
+  $correctaIndex = array_search(true, array_column($p['respostes'], 'correcta'));
+  return [
+    'id'            => $p['id'],
+    'pregunta'      => $p['pregunta'],
+    'respostes'     => $respostes,
+    'correctaIndex' => $correctaIndex
+  ];
 }, $sel);
 
 echo json_encode($public, JSON_UNESCAPED_UNICODE); // Enviem dades al client

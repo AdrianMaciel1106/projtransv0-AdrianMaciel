@@ -1,6 +1,5 @@
 // https://github.com/alvaroph/tr0_daw
 
-
 let data = null; // Dades del quiz
 let current = 0; // Índex de la pregunta actual
 let answers = [];// Respostes escollides per l’usuari
@@ -114,10 +113,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const respostaButtons = container.querySelectorAll(".resposta");
     respostaButtons.forEach((btn, i) => {
       btn.addEventListener("click", () => {
-        answers[current] = i;
-        estatDeLaPartida.respostesUsuari[current] = i;
+        answers[current] = i; // Guardar resposta escollida
+        estatDeLaPartida.respostesUsuari[current] = i; // Actualitzar respostes de l'usuari
         estatDeLaPartida.contadorPreguntes = estatDeLaPartida.respostesUsuari.filter(a => a !== undefined).length;
-        respostaButtons.forEach(b => b.classList.remove("seleccionada"));
+        respostaButtons.forEach(b => b.classList.remove("seleccionada")); // Treure classe de totes
         btn.classList.add("seleccionada");
         renderitzarMarcador();
         // Mostrar botó "Enviar Resultats" si totes les preguntes estan respostes
@@ -189,27 +188,27 @@ window.addEventListener('DOMContentLoaded', () => {
   //Mostrar pantalla final
   function showEndScreen() {
     clearInterval(timer);   // Aturar temporitzador
+    let correctes = 0; // Comptador de respostes correctes
 
-    // Calcular respostes correctes
-    let correctes = 0;
+    // Comptar respostes correctes
     data.preguntes.forEach((pregunta, idx) => {
       const respostaUsuari = estatDeLaPartida.respostesUsuari[idx];
-      if (respostaUsuari !== undefined) {
-        // Trobar la resposta correcta (la propietat correcta=true)
-        const respostaCorrectaIndex = pregunta.respostes.findIndex(r => r.correcta === true);
-        if (respostaUsuari === respostaCorrectaIndex) correctes++;
+      const respostaCorrectaIndex = pregunta.correctaIndex;
+      if (respostaUsuari === respostaCorrectaIndex) {
+        correctes++;
       }
     });
-    const total = data.preguntes.length;
-    const nota = total > 0 ? ((correctes / total) * 10).toFixed(2) : '0.00';
 
+    const total = data.preguntes.length; // Total de preguntes
+    const notaFinal = total > 0 ? ((correctes / total) * 10).toFixed(2) : '0.00'; // Nota final sobre 10
     container.innerHTML = `
       <h2>Fi del joc!</h2>
       <p>Has contestat ${estatDeLaPartida.respostesUsuari.filter(a => a !== undefined).length} de ${total} preguntes.</p>
-      <p>Respostes correctes: <strong>${correctes}</strong> de <strong>${total}</strong></p>
-      <p>Nota final: <strong>${nota}</strong> / 10</p>
+      <p>Has respost ${correctes} preguntes correctament.</p>
+      <p>La teva nota final es de ${notaFinal}</p>
       <button id="reiniciar" class="botons-navegacio">Reiniciar</button>
     `;
+
     renderitzarMarcador();
     btnEnviar.classList.add('hidden');
     document.getElementById('reiniciar').addEventListener('click', () => {
