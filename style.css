@@ -141,3 +141,19 @@ button.resposta.seleccionada {
     margin: 0.5rem 0;
   }
 }
+
+#enviar-resultats {
+  border-radius: 1em;
+  cursor: pointer;
+  width: 9em;
+  height: 3em;
+  margin: 1em;
+  font-size: 1em;
+  font-family: 'Raleway', sans-serif;
+}
+
+#enviar-resultats.hover {
+  background: white;
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
