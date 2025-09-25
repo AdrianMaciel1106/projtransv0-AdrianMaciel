@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // 1) Carregar preguntes del servidor
-  fetch('./getPreguntes.php')
+  fetch('getPreguntes.php')
     .then(r => {
       if (!r.ok) throw new Error('Error al carregar preguntes');
       return r.json();
@@ -217,6 +217,7 @@ window.addEventListener('DOMContentLoaded', () => {
       answers = [];
       showQuestion();
       renderitzarMarcador();
+      startTimer();
     });
   }
 });
