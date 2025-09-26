@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$user = 'a22adrmacfir_admin';
-$pass = 'b}/4$kPH+5;9Ztd%';
-$dbname = 'a22adrmacfir_proj0';
+$user = 'usuario';
+$pass = 'password';
+$dbname = 'mi_bd';
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
