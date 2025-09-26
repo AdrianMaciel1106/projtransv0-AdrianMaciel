@@ -3,7 +3,7 @@ header('Content-Type: application/json; charset=utf-8'); // Indiquem que retorne
 session_start();// Iniciem sessió per guardar respostes correctes
 
 // Banc preguntes
-$all = [
+/*$all = [
   [
     'id' => 1,
     'pregunta' => "Quin d’aquests és el logotip correcte de BMW?",
@@ -204,10 +204,10 @@ $all = [
       [ 'id' => 4, 'text' => "", 'correcta' => false, 'imatge' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTIvWSbqiT-nX_x2aASbFnxSpKmn6-HQQHZQ&s" ]
     ]
   ]
-];
+];*/
 
-shuffle($all); // Si quieres que salgan en orden aleatorio
-$sel = $all; // Como siempre serán 20, no hace falta array_slice
+// shuffle($all); // Si quieres que salgan en orden aleatorio
+// $sel = $all; // Como siempre serán 20, no hace falta array_slice
 
 $_SESSION['answers'] = []; // Inicializamos array de respuestas correctas
 foreach ($sel as $p) {
