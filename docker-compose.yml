@@ -1,8 +1,39 @@
 services:
-  web:
-    image: php:8.2-apache
+  app:
+    build: .
+    container_name: php-app
     ports:
       - "8080:80"
     volumes:
-      - ./:/var/www/html:ro
-    restart: unless-stopped
+      - ./src:/var/www/html
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: usuario
+      DB_PASS: password
+      DB_NAME: mi_bd
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mi_bd
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
