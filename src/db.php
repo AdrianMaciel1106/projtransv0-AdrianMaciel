@@ -1,12 +1,14 @@
 <?php
 $host = 'localhost';
-$user = 'usuario';
-$pass = 'password';
-$dbname = 'mi_bd';
+$user = 'a22adrmacfir_admin';
+$pass = 'Projecte0-AdrianMaciel';
+$dbname = 'a22adrmacfir_proj0';
 
+ // Connexió amb mysqli (per admin.php)
 function getDB() {
-    global $host, $db, $user, $pass;
-    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    global $host, $dbname, $user, $pass;
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4"; // Data Source Name
+    // Connexió amb PDO (per getPreguntes.php)
     try {
         $pdo = new PDO($dsn, $user, $pass, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
