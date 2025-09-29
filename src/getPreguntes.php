@@ -4,9 +4,10 @@ require_once 'db.php';
 
 $num = isset($_GET['num']) ? intval($_GET['num']) : 10;
 
+// Validar el número de preguntes
 try {
     $pdo = getDB();
-    $stmt = $pdo->prepare("SELECT id, text FROM pregunta ORDER BY RAND() LIMIT :num");
+    $stmt = $pdo->prepare("SELECT id, text FROM pregunta ORDER BY RAND() LIMIT :num"); // Usar parámetro enlazado para evitar inyección SQL
     $stmt->bindValue(':num', $num, PDO::PARAM_INT);
     $stmt->execute();
     $preguntes = $stmt->fetchAll();

@@ -21,13 +21,13 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Si no existeix el div marcador, el creem
   if (!marcadorDiv) {
-    marcadorDiv = document.createElement('div');
+    marcadorDiv = document.createElement('div'); // Crear div marcador
     marcadorDiv.id = 'marcador';
     container.parentNode.insertBefore(marcadorDiv, container.nextSibling);
   }
 
   // Afegim el botó "Enviar Resultats" ocult
-  let btnEnviar = document.getElementById('enviar-resultats');
+  let btnEnviar = document.getElementById('enviar-resultats'); // Botó enviar resultats
   if (!btnEnviar) {
     btnEnviar = document.createElement('button');
     btnEnviar.id = 'enviar-resultats';
@@ -70,7 +70,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function showQuestion() {
     const preguntes = data.preguntes;
-
+    
+    // Validar índex
     if (current < 0) current = 0;
     if (current >= preguntes.length) {
       showEndScreen();
@@ -104,8 +105,9 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    html += `<h3>Pregunta ${current + 1} de ${preguntes.length}</h3>`;
+    html += `<h3>Pregunta ${current + 1} de ${preguntes.length}</h3>`; // Indicador de pregunta actual
 
+    // Actualitzar el contingut
     container.innerHTML = html;
     if (preguntaCounter) preguntaCounter.textContent = `${current + 1} / ${preguntes.length}`;
 
@@ -192,8 +194,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Comptar respostes correctes
     data.preguntes.forEach((pregunta, idx) => {
-      const respostaUsuari = estatDeLaPartida.respostesUsuari[idx];
-      const respostaCorrectaIndex = pregunta.correctaIndex;
+      const respostaUsuari = estatDeLaPartida.respostesUsuari[idx]; // Resposta de l'usuari
+      const respostaCorrectaIndex = pregunta.correctaIndex; // Índex de la resposta correcta
       if (respostaUsuari === respostaCorrectaIndex) {
         correctes++;
       }
@@ -210,6 +212,7 @@ window.addEventListener('DOMContentLoaded', () => {
     `;
 
     renderitzarMarcador();
+    // Mostrar botó "Enviar Resultats"
     btnEnviar.classList.add('hidden');
     document.getElementById('reiniciar').addEventListener('click', () => {
       current = 0;
