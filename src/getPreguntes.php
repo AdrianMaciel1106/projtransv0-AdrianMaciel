@@ -1,56 +1,53 @@
 <?php
-header('Content-Type: application/json');
-include 'db.php';
+header('Content-Type: application/json'); // Respuesta en JSON
+include 'db.php'; // Incluir conexión a la base de datos
 
+// Número de preguntas a obtener (por defecto 10)
 $num = isset($_GET['num']) ? intval($_GET['num']) : 10;
 
+// Validar número
 try {
     $pdo = getDB();
 
-    // Preguntes
-    $stmt = $pdo->prepare("SELECT id, text, imatge FROM preguntes ORDER BY RAND() LIMIT :num"); // Consulta
-    $stmt->bindValue(':num', $num, PDO::PARAM_INT); // Enllaçar paràmetre
-    $stmt->execute(); // Executem la consulta
-    $preguntes = $stmt->fetchAll(PDO::FETCH_ASSOC); // Preguntes obtingudes
+    // Obtener preguntas aleatorias
+    $stmt = $pdo->prepare("SELECT id, text, imatge FROM preguntes ORDER BY RAND() LIMIT :num");
+    $stmt->bindValue(':num', $num, PDO::PARAM_INT);
+    $stmt->execute();
+    $preguntes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // Para cada pregunta, obtener sus respuestas
     $resultat = [];
+    $stmt2 = $pdo->prepare("SELECT id, text, imatge FROM respostes WHERE pregunta_id = :pid");
 
-    // Respostes per cada pregunta
-    $stmt2 = $pdo->prepare("SELECT id, text, imatge, is_correct FROM respostes WHERE pregunta_id = :pid");
-    
-    // Recorrem les preguntes obtingudes
+    // Construir resultado
     foreach ($preguntes as $pregunta) {
-        $stmt2->execute([':pid' => $pregunta['id']]); // Obtenim respostes
-        $respostesDB = $stmt2->fetchAll(PDO::FETCH_ASSOC); // Respostes de la pregunta
+        $stmt2->execute([':pid' => $pregunta['id']]);
+        $respostesDB = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-        $respostes = []; // Respostes formatades per la pregunta
-        $correctaIndex = null; // Índex de la resposta correcta
-
-        // Recorrem les respostes per formatar-les
-        foreach ($respostesDB as $idx => $r) {
+        // Formatear respuestas
+        $respostes = [];
+        foreach ($respostesDB as $r) {
             $respostes[] = [
+                'id' => (int)$r['id'],        // ID real de la respuesta
                 'text' => $r['text'],
                 'imatge' => $r['imatge'] ?? null
             ];
-            if ((int)$r['is_correct'] === 1) {
-                $correctaIndex = $idx;
-            }
         }
 
+        //  Añadir pregunta y sus respuestas al resultado
         $resultat[] = [
-            'id' => $pregunta['id'],
-            'pregunta' => $pregunta['text'],   // clave que espera JS
-            'imatge' => $pregunta['imatge'],   
-            'respostes' => $respostes,         // clave que espera JS
-            'correctaIndex' => $correctaIndex  // clave que espera JS
+            'id' => (int)$pregunta['id'],
+            'pregunta' => $pregunta['text'],
+            'imatge' => $pregunta['imatge'] ?? null,
+            'respostes' => $respostes
         ];
     }
 
-    echo json_encode($resultat); // Retornem JSON
+    // Devolver preguntas y respuestas en JSON
+    echo json_encode($resultat);
+
+    // Manejo de errores
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode([
-        'error' => 'Error al obtenir preguntes',
-        'detall' => $e->getMessage()
-    ]);
+    echo json_encode(['error' => 'Error al obtenir preguntes']);
 }
