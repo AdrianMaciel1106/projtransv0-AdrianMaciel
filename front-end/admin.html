@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panell d’administració del quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./admin.css" />
+</head>
+<body>
+  <h1>Panell d’administració</h1>
+  <p class="muted small">Configura API_URL amb el nom del teu script PHP.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Llistat</h2>
+      <div class="controls">
+        <button id="btn-refresh">Actualitzar</button>
+      </div>
+      <div id="list"></div>
+    </div>
+
+    <div class="card">
+      <h2>Nova pregunta</h2>
+      <form id="form-create">
+        <div class="row">
+          <label style="width:130px">Text:</label>
+          <input type="text" name="pregunta_text" placeholder="Enunciat de la pregunta" required />
+        </div>
+        <div class="row">
+          <label style="width:130px">Imatge (URL):</label>
+          <input type="text" name="pregunta_img" placeholder="Opcional" />
+        </div>
+
+        <div class="answers" id="create-answers"></div>
+        <div class="row">
+          <button type="button" id="btn-add-answer">Afegir resposta</button>
+        </div>
+
+        <div class="row">
+          <button type="submit">Crear</button>
+        </div>
+        <div id="create-status" class="small muted"></div>
+      </form>
+    </div>
+  </div>
+  <script src="./admin.js"></script>
+</body>
+</html>

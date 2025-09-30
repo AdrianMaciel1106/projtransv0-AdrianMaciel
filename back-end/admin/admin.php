@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include './back-end/src/db.php';
 
 // Rebre l'acció
 $action = $_GET['action'] ?? $_POST['action'] ?? 'read';

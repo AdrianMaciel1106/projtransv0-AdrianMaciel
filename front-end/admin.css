@@ -1,0 +1,97 @@
+:root { 
+    --b:#e5e7eb; 
+    --m:#6b7280; 
+    --ok:#16a34a; 
+    --err:#dc2626; 
+}
+
+body { 
+    font-family: system-ui, sans-serif; 
+    margin: 20px; 
+}
+
+h1,h2 { 
+    margin: 0 0 10px; 
+}
+
+.grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+}
+
+.card { 
+    border: 1px solid var(--b); 
+    border-radius: 8px; 
+    padding: 16px; 
+    background: #fafafa; 
+}
+
+.row { 
+    display: flex; 
+    gap: 8px; 
+    align-items: center; 
+    margin-bottom: 8px; 
+}
+
+.row input[type="text"] { 
+    flex: 1; 
+    padding: 6px; 
+}
+
+.answers { 
+    margin-top: 8px; 
+}
+
+button { 
+    padding: 6px 10px; 
+    cursor: pointer; 
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 10px; 
+}
+
+th, td { 
+    border: 1px solid var(--b); 
+    padding: 6px; 
+    vertical-align: top; 
+}
+
+.muted { 
+    color: var(--m); 
+}
+
+.ok { 
+    color: var(--ok); 
+}
+
+.err { 
+    color: var(--err); 
+}
+
+.small { 
+    font-size: 12px; 
+}
+
+.controls { 
+    display: flex; 
+    gap: 6px; 
+    flex-wrap: wrap; 
+}
+
+.inline-form { 
+    background: #fff; 
+    border: 1px dashed var(--b); 
+}
+
+.answer-badge { 
+    display:inline-block; 
+    background:#eef; 
+    border:1px solid #cde; 
+    padding:2px 6px; 
+    border-radius:12px; 
+    margin:2px 2px; 
+}

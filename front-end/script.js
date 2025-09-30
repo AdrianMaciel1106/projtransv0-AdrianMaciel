@@ -186,7 +186,7 @@ window.addEventListener('DOMContentLoaded', () => {
       .map((p, idx) => ({ pregunta_id: p.id, resposta_id: answers[idx] ?? null }))
       .filter(r => r.resposta_id !== null);
 
-    fetch('finalitza.php', {
+    fetch('/projtransv0-AdrianMaciel/back-end/src/getPreguntes.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ respostes: payloadArray })
