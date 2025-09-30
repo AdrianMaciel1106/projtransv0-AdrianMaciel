@@ -9,10 +9,10 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
-      DB_USER: usuario
-      DB_PASS: password
-      DB_NAME: mi_bd
+      DB_HOST: localhost
+      DB_USER: a22adrmacfir_admin
+      DB_PASS: Projecte0-AdrianMaciel
+      DB_NAME: a22adrmacfir_proj0
 
   db:
     image: mysql:8.0
