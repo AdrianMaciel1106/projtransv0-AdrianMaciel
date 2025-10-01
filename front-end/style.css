@@ -3,22 +3,24 @@ body {
   text-align: center;
   background: #f8f8f8;
   margin: 0;
-  padding: 2em;
-  min-height: 100vh;
+  padding: 1em;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 2em;
-  margin-bottom: 1em;
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+  margin-top: 0;
 }
 
 h2 {
   font-size: 1.5em;
-  margin-bottom: 1em 0;
+  margin: 0.5em 0;
 }
 
 img {
@@ -26,9 +28,9 @@ img {
 }
 
 #questionari img {
-    max-width: 15vh;
-    max-height: 15vh;
-    margin: 1.5em auto;
+    max-width: 12vh;
+    max-height: 12vh;
+    margin: 0.8em auto;
     display: block;
     background: white;
     box-shadow: none;
@@ -51,8 +53,8 @@ button.resposta {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     border-radius: 1em;
     margin: 0;
-    width: 20em;
-    height: 15em;
+    width: 17em;
+    height: 12em;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -62,14 +64,16 @@ button.resposta {
 }
 
 button.resposta img {
-    border-radius: 0.75em;
+    border-radius: 0.5em;
     box-shadow: 0 1px 4px rgba(0,0,0,0.07);
     background: white;
     max-width: 90%;
+    max-height: 6em;
     margin-bottom: 0.5em;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    object-fit: contain;
 }
 
 button.resposta:hover {
@@ -113,35 +117,6 @@ button.resposta.seleccionada {
   box-shadow: 0 1px 4px rgba(0,0,0,0.07);
 }
 
-@media (max-width: 600px) {
-  body {
-    padding: 0.5rem;
-  }
-  .resposta-container {
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-  }
-  button.resposta {
-    width: 90vw;
-    font-size: 1rem;
-    padding: 0.5rem;
-    margin: 0 auto;
-
-  }
-  
-  #questionari img,
-  button.resposta img {
-    max-width: 80vw;
-    max-height: 20vh;
-  }
-
-  h1, h2 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-  }
-}
-
 #enviar-resultats {
   border-radius: 1em;
   cursor: pointer;
@@ -156,4 +131,59 @@ button.resposta.seleccionada {
   background: white;
     border-color: #0d6efd;
     color: #0d6efd;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0.5em;
+  }
+  
+  .resposta-container {
+    grid-template-columns: 1fr;
+    gap: 0.6em;
+    margin: 0.6em auto;
+  }
+  
+  button.resposta {
+    min-height: 8em;
+    font-size: 0.95em;
+    padding: 0.6em;
+  }
+  
+  button.resposta img {
+    max-height: 5em;
+  }
+
+  #questionari img {
+    max-width: 15vh;
+    max-height: 15vh;
+  }
+
+  h1 {
+    font-size: 1.3em;
+    margin: 0.3em 0;
+  }
+  
+  h2 {
+    font-size: 1.1em;
+    margin: 0.4em 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2em;
+  }
+  
+  h2 {
+    font-size: 1em;
+  }
+  
+  button.resposta {
+    min-height: 7em;
+  }
+  
+  #contador-pregunta, #contador-tiempo {
+    font-size: 0.9em;
+  }
 }
