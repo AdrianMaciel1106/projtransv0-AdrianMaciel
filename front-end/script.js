@@ -12,11 +12,13 @@ function escapeHtml(str) {
   ));
 }
 
+// Al cargar la página
 window.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('questionari');
   const preguntaCounter = document.getElementById('contador-pregunta');
   const tiempoCounter = document.getElementById('contador-tiempo');
 
+  // Verificar que el contenedor existe
   if (!container) {
     console.error('No se encontró el elemento #questionari');
     return;
@@ -30,6 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (container.parentNode) container.parentNode.insertBefore(marcadorDiv, container.nextSibling);
   }
 
+  // Crear botón de enviar
   let btnEnviar = document.getElementById('enviar-resultats');
   if (!btnEnviar) {
     btnEnviar = document.createElement('button');
@@ -56,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (Array.isArray(p.respostes)) p.respostes.sort(() => Math.random() - 0.5);
       });
 
+      // Inicializar estado
       answers = new Array(data.preguntes.length).fill(null);
       startTimer();
       showQuestion();
@@ -66,12 +70,14 @@ window.addEventListener('DOMContentLoaded', () => {
       console.error('Error carregant preguntes:', err);
     });
 
+    // Mostrar la pregunta actual
   function showQuestion() {
     try {
       if (!data || !Array.isArray(data.preguntes)) return;
       const preguntes = data.preguntes;
       if (current < 0) current = 0;
 
+      // Si se ha pasado del final
       if (current >= preguntes.length) {
         container.innerHTML = `<h2>Has arribat al final.</h2>`;
         showEndScreen();
@@ -80,12 +86,15 @@ window.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // Renderizar la pregunta actual
       const p = preguntes[current];
       const respostes = Array.isArray(p.respostes) ? p.respostes : [];
 
+      // Pregunta e imagen
       let html = `<h2>${current + 1}. ${escapeHtml(p.pregunta)}</h2>`;
       if (p.imatge) html += `<img src="${escapeHtml(p.imatge)}" alt="" style="max-width:200px; display:block; margin:10px auto;">`;
 
+      // Respuestas
       html += `<div class="resposta-container">`;
       respostes.forEach(opt => {
         const selected = answers[current] === opt.id ? ' seleccionada' : '';
@@ -97,6 +106,7 @@ window.addEventListener('DOMContentLoaded', () => {
       });
       html += `</div>`;
 
+      // Navegación
       html += `
         <div>
           <button class="botons-navegacio" id="enrere" ${current === 0 ? "disabled" : ""}>Anterior</button>
@@ -105,15 +115,18 @@ window.addEventListener('DOMContentLoaded', () => {
       `;
       html += `<h3>Pregunta ${current + 1} de ${preguntes.length}</h3>`;
 
+      // Actualizar el contenedor
       container.innerHTML = html;
       if (preguntaCounter) preguntaCounter.textContent = `${current + 1} / ${preguntes.length}`;
 
+      // Añadir eventos a las respuestas
       const respostaButtons = container.querySelectorAll('.resposta');
       respostaButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           const id = parseInt(btn.dataset.id, 10);
           answers[current] = id;
 
+          // Actualizar selección visual
           respostaButtons.forEach(b => b.classList.remove('seleccionada'));
           btn.classList.add('seleccionada');
 
@@ -124,6 +137,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       });
 
+      // Añadir eventos a los botones de navegación
       const enrereBtn = document.getElementById('enrere');
       if (enrereBtn) enrereBtn.addEventListener('click', () => { current--; showQuestion(); });
 
@@ -139,12 +153,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Actualizar el marcador de preguntas respondidas
   function renderitzarMarcador() {
     const total = data?.preguntes?.length || 0;
     const contestades = answers.filter(a => a !== null).length;
     if (marcadorDiv) marcadorDiv.textContent = `Preguntes respostes: ${contestades} de ${total}`;
   }
 
+  // Iniciar el temporizador
   function startTimer() {
     let temps = 30;
     if (!tiempoCounter) return;
@@ -161,6 +177,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }, 1000);
 
+    // Formatear tiempo en mm:ss
     function formatTime(s) {
       const m = Math.floor(s / 60);
       const sec = s % 60;
@@ -168,6 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Mostrar pantalla de fin
   function showEndScreen() {
     clearInterval(timer);
     container.innerHTML = `
@@ -177,15 +195,18 @@ window.addEventListener('DOMContentLoaded', () => {
     btnEnviar.classList.remove('hidden');
   }
 
+  // Enviar resultados al servidor
   function enviarResultats() {
     if (sending) return;
     sending = true;
     clearInterval(timer);
 
+    // Deshabilitar botones
     const payloadArray = data.preguntes
       .map((p, idx) => ({ pregunta_id: p.id, resposta_id: answers[idx] ?? null }))
       .filter(r => r.resposta_id !== null);
 
+      // Deshabilitar todos los botones
     fetch('/projtransv0-AdrianMaciel/back-end/src/getPreguntes.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

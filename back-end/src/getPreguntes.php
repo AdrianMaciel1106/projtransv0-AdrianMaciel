@@ -22,10 +22,12 @@ try {
         $resultat = [];
         $stmt2 = $pdo->prepare("SELECT id, text, imatge FROM respostes WHERE pregunta_id = :pid");
 
+        // Construir el resultado
         foreach ($preguntes as $pregunta) {
             $stmt2->execute([':pid' => $pregunta['id']]);
             $respostesDB = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
+            // Formatear respuestas
             $respostes = [];
             foreach ($respostesDB as $r) {
                 $respostes[] = [
@@ -35,6 +37,7 @@ try {
                 ];
             }
 
+            // Añadir pregunta y sus respuestas al resultado
             $resultat[] = [
                 'id' => (int)$pregunta['id'],
                 'pregunta' => $pregunta['text'],
@@ -50,12 +53,14 @@ try {
         $input = file_get_contents('php://input');
         $data = json_decode($input, true);
 
+        // Validar formato de datos
         if (!isset($data['respostes']) || !is_array($data['respostes'])) {
             http_response_code(400);
             echo json_encode(['error' => 'Formato de datos inválido']);
             exit;
         }
 
+        // Evaluar respuestas
         $respostes = $data['respostes'];
         $correctes = 0;
         $total = count($respostes);
