@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
   btnEnviar.addEventListener('click', enviarResultats);
 
   // Cargar preguntas desde el servidor
-  fetch('getPreguntes.php')
+  fetch('/projtransv0-AdrianMaciel/back-end/src/getPreguntes.php')
     .then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
