@@ -7,15 +7,15 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 h1 {
   font-size: 1.5em;
-  margin-bottom: 0.3em;
-  margin-top: 0;
+  margin: 0.3em 0;
 }
 
 h2 {
@@ -24,90 +24,93 @@ h2 {
 }
 
 img {
-  background-color: #f0f0f0; /* O el color que combine con tu diseño */
+  background-color: #f0f0f0;
+  max-width: 100%;
+  height: auto;
 }
 
 #questionari img {
-    max-width: 12vh;
-    max-height: 12vh;
-    margin: 0.8em auto;
-    display: block;
-    background: white;
-    box-shadow: none;
+  max-width: 12vh;
+  max-height: 12vh;
+  margin: 0.8em auto;
+  display: block;
+  background: white;
+  box-shadow: none;
 }
 
 .resposta-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    gap: 1em;
-    margin: 1em 0;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin: 1em 0;
+  overflow: auto;
 }
 
 button.resposta {
-    background: white;
-    cursor: pointer;
-    border: 2px solid #e0e0e0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border-radius: 1em;
-    margin: 0;
-    width: 17em;
-    height: 12em;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    padding: 1em;
-    justify-content: center;
+  background: white;
+  cursor: pointer;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 1em;
+  width: 17em;
+  height: 12em;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  padding: 1em;
 }
 
 button.resposta img {
-    border-radius: 0.5em;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-    background: white;
-    max-width: 90%;
-    max-height: 6em;
-    margin-bottom: 0.5em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
+  border-radius: 0.5em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  background: white;
+  max-width: 90%;
+  max-height: 6em;
+  margin-bottom: 0.5em;
+  object-fit: contain;
 }
 
-button.resposta:hover {
-    background: white;
-    border-color: #0d6efd;
-    border: solid 5px #0d6efd;
-    color: #0d6efd;
-}
-
+button.resposta:hover,
 button.resposta.seleccionada {
-    background: white;
-    border-color: #0d6efd;
-    color: #0d6efd;
+  background: white;
+  border: solid 3px #0d6efd;
+  color: #0d6efd;
+}
+
+.botons-navegacio,
+#enviar-resultats {
+  border-radius: 1em;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: 'Raleway', sans-serif;
+  margin: 1em;
 }
 
 .botons-navegacio {
-    border-radius: 1em;
-    cursor: pointer;
-    width: 6em;
-    height: 3em;
-    margin: 1em;
-    font-size: 1em;
-    font-family: 'Raleway', sans-serif;
+  width: 6em;
+  height: 3em;
 }
 
-.botons-navegacio:hover {
-    background: white;
-    border-color: #0d6efd;
-    color: #0d6efd;
+#enviar-resultats {
+  width: 9em;
+  height: 3em;
+}
+
+.botons-navegacio:hover,
+#enviar-resultats:hover {
+  background: white;
+  border-color: #0d6efd;
+  color: #0d6efd;
 }
 
 #contador-pregunta, #contador-tiempo {
-  font-size: 1.7em;
-  margin: 1em auto;
+  font-size: 1.2em;
+  margin: 0.5em auto;
   font-weight: bold;
   color: #0d6efd;
   background: #fff;
@@ -117,72 +120,40 @@ button.resposta.seleccionada {
   box-shadow: 0 1px 4px rgba(0,0,0,0.07);
 }
 
-#enviar-resultats {
-  border-radius: 1em;
-  cursor: pointer;
-  width: 9em;
-  height: 3em;
-  margin: 1em;
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-}
-
-#enviar-resultats.hover {
-  background: white;
-    border-color: #0d6efd;
-    color: #0d6efd;
-}
-
+/* --- Responsive --- */
 @media (max-width: 768px) {
-  body {
-    padding: 0.5em;
-  }
-  
+  body { padding: 0.5em; }
+
   .resposta-container {
-    grid-template-columns: 1fr;
     gap: 0.6em;
     margin: 0.6em auto;
   }
-  
+
   button.resposta {
+    width: 100%;
+    max-width: 16em;
     min-height: 8em;
     font-size: 0.95em;
     padding: 0.6em;
   }
-  
-  button.resposta img {
-    max-height: 5em;
-  }
+
+  button.resposta img { max-height: 5em; }
 
   #questionari img {
     max-width: 15vh;
     max-height: 15vh;
   }
 
-  h1 {
-    font-size: 1.3em;
-    margin: 0.3em 0;
-  }
-  
-  h2 {
-    font-size: 1.1em;
-    margin: 0.4em 0;
-  }
+  h1 { font-size: 1.3em; }
+  h2 { font-size: 1.1em; }
 }
 
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.2em;
-  }
-  
-  h2 {
-    font-size: 1em;
-  }
-  
-  button.resposta {
-    min-height: 7em;
-  }
-  
+  h1 { font-size: 1.2em; }
+  h2 { font-size: 1em; }
+
+  button.resposta { min-height: 7em; }
+
   #contador-pregunta, #contador-tiempo {
     font-size: 0.9em;
   }
