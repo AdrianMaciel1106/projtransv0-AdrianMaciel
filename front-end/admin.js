@@ -1,17 +1,18 @@
 // Cambia esto por el nombre real del archivo PHP (el de tu switch action)
 const API_URL = '../back-end/admin/admin.php';
 
-const listDiv = document.getElementById('list');
-const btnRefresh = document.getElementById('btn-refresh');
+const listDiv = document.getElementById('list'); // Div donde se carga el listado
+const btnRefresh = document.getElementById('btn-refresh');  // Botón de recarga
 
-const formCreate = document.getElementById('form-create');
-const createAnswersDiv = document.getElementById('create-answers');
-const btnAddAnswer = document.getElementById('btn-add-answer');
-const createStatus = document.getElementById('create-status');
+const formCreate = document.getElementById('form-create'); // Formulario de creación
+const createAnswersDiv = document.getElementById('create-answers'); // Div donde van las respuestas del form de crear
+const btnAddAnswer = document.getElementById('btn-add-answer'); // Botón para añadir respuesta en el form de crear
+const createStatus = document.getElementById('create-status'); // Span para mensajes de estado del form de crear
 
 // Estado local para el formulario de creación
 let createAnswers = [];
 
+// Escapa HTML para evitar XSS
 function escapeHtml(str) {
     if (str === null || str === undefined) return '';
     return String(str).replace(/[&<>"']/g, s => (
@@ -24,6 +25,7 @@ function addCreateAnswerRow(text = '', isCorrect = false) {
     const idx = createAnswers.length;
     createAnswers.push({ text, is_correct: isCorrect ? 1 : 0 });
 
+    // Crear elementos
     const row = document.createElement('div');
     row.className = 'row';
     row.innerHTML = `
@@ -35,6 +37,7 @@ function addCreateAnswerRow(text = '', isCorrect = false) {
     <button type="button" class="btn-del small" data-idx="${idx}">Eliminar</button>
     `;
 
+    // Eventos
     row.querySelector('input[type="text"]').addEventListener('input', (e) => {
     const i = Number(e.target.dataset.idx);
     createAnswers[i].text = e.target.value;
@@ -64,10 +67,12 @@ formCreate.addEventListener('submit', async (e) => {
     const text = formCreate.pregunta_text.value.trim();
     const img = formCreate.pregunta_img.value.trim();
 
+    // Filtrar respuestas válidas (no vacías)
     const validAnswers = createAnswers
     .map((r) => r)
     .filter(r => r && r.text && r.text.trim().length > 0);
 
+    // Validaciones
     if (!text) {
     createStatus.textContent = 'Falta el text de la pregunta.';
     createStatus.className = 'small err';
@@ -79,16 +84,19 @@ formCreate.addEventListener('submit', async (e) => {
     return;
     }
 
+    // Almenys una correcta
     const fd = new FormData();
     fd.append('action', 'create');
     fd.append('pregunta_text', text);
     fd.append('pregunta_img', img);
 
+    // Añadir respuestas
     validAnswers.forEach((r, pos) => {
     fd.append(`respostes[${pos}][text]`, r.text.trim());
     fd.append(`respostes[${pos}][is_correct]`, r.is_correct);
     });
 
+    // Enviar
     try {
     const res = await fetch(API_URL, { method: 'POST', body: fd });
     const json = await res.json();
@@ -124,7 +132,7 @@ async function loadList() {
     console.error(err);
     }
 }
-
+// Renderizar listado
 function renderList(preguntes) {
     if (!Array.isArray(preguntes) || preguntes.length === 0) {
     listDiv.innerHTML = '<p class="muted">No hi ha preguntes.</p>';
@@ -216,6 +224,7 @@ function renderList(preguntes) {
         fd.append('pregunta_text', form.querySelector('input[name="pregunta_text"]').value.trim());
         fd.append('pregunta_img', form.querySelector('input[name="pregunta_img"]').value.trim());
 
+        // Recoger respuestas
         const rows = form.querySelectorAll('.answers .row');
         let pos = 0;
         rows.forEach(row => {
@@ -223,6 +232,7 @@ function renderList(preguntes) {
         const txt = row.querySelector('input[name="rtext"]').value.trim();
         const chk = row.querySelector('input[name="rcorrect"]').checked ? 1 : 0;
 
+        // Solo si tiene texto
         if (txt.length > 0) {
             if (rid) fd.append(`respostes[${pos}][id]`, Number(rid));
             fd.append(`respostes[${pos}][text]`, txt);
@@ -231,6 +241,7 @@ function renderList(preguntes) {
         }
         });
 
+        // Validaciones básicas
         try {
         const res = await fetch(API_URL, { method: 'POST', body: fd });
         const json = await res.json();
@@ -248,6 +259,7 @@ function renderList(preguntes) {
     });
 }
 
+// Renderizar formulario de edición
 function renderEditForm(p) {
     const imgVal = p.imatge || '';
     const answers = Array.isArray(p.respostes) ? p.respostes : [];
@@ -290,5 +302,6 @@ function renderEditForm(p) {
     `;
 }
 
+// Inicializar
 btnRefresh.addEventListener('click', loadList);
 loadList();

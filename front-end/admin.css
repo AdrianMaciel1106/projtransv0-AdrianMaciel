@@ -175,7 +175,6 @@ th {
   color: #1e40af;
 }
 
-/* Scroll solo en el contenedor #list */
 #list {
   max-height: 600px;
   overflow-y: auto;
