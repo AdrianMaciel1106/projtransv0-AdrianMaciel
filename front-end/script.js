@@ -207,11 +207,12 @@ window.addEventListener('DOMContentLoaded', () => {
       .filter(r => r.resposta_id !== null);
 
       // Deshabilitar todos los botones
-    fetch('/projtransv0-AdrianMaciel/back-end/src/getPreguntes.php', {
+    fetch('/projtransv0-AdrianMaciel/back-end/src/enviarResultats.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ respostes: payloadArray })
     })
+
       .then(r => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();
