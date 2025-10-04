@@ -202,9 +202,10 @@ window.addEventListener('DOMContentLoaded', () => {
     clearInterval(timer);
 
     // Deshabilitar botones
-    const payloadArray = data.preguntes
-      .map((p, idx) => ({ pregunta_id: p.id, resposta_id: answers[idx] ?? null }))
-      .filter(r => r.resposta_id !== null);
+    const payloadArray = data.preguntes.map((p, idx) => ({
+      pregunta_id: p.id,
+      resposta_id: answers[idx] ?? null
+    }));
 
       // Deshabilitar todos los botones
     fetch('/projtransv0-AdrianMaciel/back-end/src/enviarResultats.php', {

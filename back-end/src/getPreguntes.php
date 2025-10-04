@@ -20,7 +20,7 @@ try {
 
         // Para cada pregunta, obtener sus respuestas
         $resultat = [];
-        $stmt2 = $pdo->prepare("SELECT id, text, imatge FROM respostes WHERE pregunta_id = :pid");
+        $stmt2 = $pdo->prepare("SELECT id, text, imatge, is_correct FROM respostes WHERE pregunta_id = :pid");
 
         // Construir el resultado
         foreach ($preguntes as $pregunta) {
@@ -33,7 +33,8 @@ try {
                 $respostes[] = [
                     'id' => (int)$r['id'],
                     'text' => $r['text'],
-                    'imatge' => $r['imatge'] ?? null
+                    'imatge' => $r['imatge'] ?? null,
+                    'is_correct' => (int)$r['is_correct']
                 ];
             }
 
@@ -66,7 +67,7 @@ try {
         $total = count($respostes);
 
         // Preparar consulta para verificar respuestas correctas
-        $stmt = $pdo->prepare("SELECT correcta FROM respostes WHERE id = :resposta_id");
+        $stmt = $pdo->prepare("SELECT is_correct FROM respostes WHERE id = :resposta_id");
 
         foreach ($respostes as $resposta) {
             if (!isset($resposta['resposta_id']) || $resposta['resposta_id'] === null) {
@@ -77,7 +78,7 @@ try {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // Verificar si la respuesta es correcta
-            if ($result && isset($result['correcta']) && (int)$result['correcta'] === 1) {
+            if ($result && isset($result['is_correct']) && (int)$result['is_correct'] === 1) {
                 $correctes++;
             }
         }
