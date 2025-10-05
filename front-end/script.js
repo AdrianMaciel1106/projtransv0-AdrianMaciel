@@ -5,7 +5,7 @@ let answers = [];                 // answers[indexPregunta] = idRespuesta
 let timer = null;                 // temporizador
 let sending = false;              // evitar envíos múltiples
 
-const API = "/projtransv0-AdrianMaciel/back-end/src/getPreguntes.php";
+const API = "/projtransv0-AdrianMaciel/back-end/src/getPreguntes.php"; // API preguntas
 
 // Utilidad: escapar HTML (scope global)
 function escapeHtml(str) {
@@ -16,14 +16,20 @@ function escapeHtml(str) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("questionari");
-  const preguntaCounter = document.getElementById("contador-pregunta");
-  const tiempoCounter = document.getElementById("contador-tiempo");
+  const container = document.getElementById("questionari"); // contenedor principal
+  const preguntaCounter = document.getElementById("contador-pregunta"); // contador preguntas
+  const tiempoCounter = document.getElementById("contador-tiempo"); // contador tiempo
 
+  // Verificar contenedor
   if (!container) {
     console.error("No se encontró #questionari");
     return;
   }
+
+  // Mostrar nombre de usuario guardado
+  const userNameEl = document.getElementById("user-name");
+  const savedName = localStorage.getItem("username");
+  if (savedName && userNameEl) userNameEl.textContent = savedName;
 
   // Intro
   const introDiv = document.createElement("div");
@@ -31,19 +37,68 @@ window.addEventListener("DOMContentLoaded", () => {
   introDiv.innerHTML = `
     <h2>Benvingut al joc!</h2>
     <p>Introdueix el teu nom per començar:</p>
-    <input type="text" id="nom-usuari" placeholder="El teu nom..." />
-    <button id="començar-joc">Començar</button>
+
+    <div class="input-group">
+      <input type="text" id="nom-usuari" class="text-input" placeholder="El teu nom…" autocomplete="name" />
+      <button id="clear-name" class="btn-ghost" type="button" aria-label="Esborrar nom">✕</button>
+      <button id="començar-joc" class="btn btn-primary" type="button">Començar</button>
+    </div>
+    <small class="meta">Pots canviar-lo o esborrar-lo abans de començar.</small>
   `;
   container.innerHTML = "";
   container.appendChild(introDiv);
 
+  // referencias y precarga
+  const inputNom = introDiv.querySelector("#nom-usuari");
+  const btnClear = introDiv.querySelector("#clear-name");
+  const btnStart = introDiv.querySelector("#començar-joc");
+
+  // habilitar/deshabilitar y mostrar/ocultar “borrar”
+  function syncNameUI(){
+    const hasText = inputNom.value.trim().length > 0;
+    btnClear.style.visibility = hasText ? "visible" : "hidden";
+    btnStart.disabled = !hasText;
+  }
+  inputNom.addEventListener("input", syncNameUI);
+  syncNameUI();
+
+  // borrar nombre
+  btnClear.addEventListener("click", () => {
+    inputNom.value = "";
+    localStorage.removeItem("username");
+    if (userNameEl) userNameEl.textContent = "convidat";
+    syncNameUI();
+    inputNom.focus();
+  });
+
+  // comenzar
+  btnStart.addEventListener("click", () => {
+    const nom = inputNom.value.trim();
+    if (!nom) return; // por si acaso
+
+    const nomClean = nom.slice(0, 28);
+    localStorage.setItem("username", nomClean);
+    if (userNameEl) userNameEl.textContent = nomClean;
+
+    container.innerHTML = `<p>Hola ${escapeHtml(nomClean)}! Preparant el qüestionari...</p>`;
+    setTimeout(iniciarQuestionari, 800);
+  });
+
+  // Comenzar juego
   document.getElementById("començar-joc").addEventListener("click", () => {
     const nom = document.getElementById("nom-usuari").value.trim();
     if (!nom) {
       alert("Si us plau, introdueix el teu nom!");
       return;
     }
-    container.innerHTML = `<p>Hola ${escapeHtml(nom)}! Preparant el qüestionari...</p>`;
+
+    // Guardar nombre (máx 28 chars)
+    const nomClean = nom.slice(0, 28);
+    localStorage.setItem("username", nomClean);
+    if (userNameEl) userNameEl.textContent = nomClean;
+
+    // Iniciar cuestionario
+    container.innerHTML = `<p>Hola ${escapeHtml(nomClean)}! Preparant el qüestionari...</p>`;
     setTimeout(iniciarQuestionari, 800);
   });
 
@@ -103,6 +158,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const preguntes = data.preguntes;
         if (current < 0) current = 0;
 
+        // Fin del cuestionario
         if (current >= preguntes.length) {
           container.innerHTML = `<h2>Has arribat al final.</h2>`;
           showEndScreen();
@@ -227,11 +283,13 @@ window.addEventListener("DOMContentLoaded", () => {
       sending = true;
       clearInterval(timer);
 
+      // Preparar payload
       const payloadArray = data.preguntes.map((p, idx) => ({
         pregunta_id: p.id,
         resposta_id: answers[idx] ?? null,
       }));
 
+      // Deshabilitar botones
       fetch(API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -250,6 +308,7 @@ window.addEventListener("DOMContentLoaded", () => {
             <button id="reiniciar" class="botons-navegacio">Reiniciar</button>
           `;
 
+          // Reiniciar juego
           document.getElementById("reiniciar")?.addEventListener("click", () => {
             current = 0;
             answers = new Array(data.preguntes.length).fill(null);

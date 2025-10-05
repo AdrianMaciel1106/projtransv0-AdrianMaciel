@@ -1,111 +1,254 @@
-/* ====== Variables (tema oscuro) ====== */
+/* ===== Variables (tema oscuro) ===== */
 :root{
-  --bg:#0b1020; --panel:#111936; --card:#0f1530;
-  --text:#eaf0ff; --muted:#a9b3d6;
-  --primary:#6ea8fe; --border:rgba(255,255,255,.06);
-  --radius-lg:16px; --radius-md:14px;
-  --space-2:12px; --space-3:16px; --space-4:22px;
-  --container:920px; --shadow:0 8px 30px rgba(0,0,0,.35);
+  --bg:#0b1020;
+  --panel:#111936;
+  --card:#0f1530;
+  --text:#eaf0ff;
+  --muted:#a9b3d6;
+  --primary:#6ea8fe;
+  --border:rgba(255,255,255,.06);
+  --radius-lg:16px;
+  --radius-md:14px;
+  --space-2:12px;
+  --space-3:16px;
+  --space-4:22px;
+  --container:920px;
+  --shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
-/* Tema claro automático */
+/* ===== Tema claro automático ===== */
 @media (prefers-color-scheme: light){
   :root{
-    --bg:#f5f7ff; --panel:#fff; --card:#fff;
-    --text:#0b1020; --muted:#5f6b8a;
-    --primary:#3a7afe; --border:rgba(10,30,60,.08);
+    --bg:#f6f8ff;
+    --panel:#ffffff;
+    --card:#ffffff;
+    --text:#0b1020;
+    --muted:#5f6b8a;
+    --primary:#3a7afe;
+    --border:rgba(10,30,60,.08);
     --shadow:0 10px 30px rgba(16,24,40,.08);
   }
 }
 
-/* ====== Reset y base ====== */
-*{box-sizing:border-box}
-html,body{height:100%}
+/* ===== Reset y base ===== */
+*{ box-sizing:border-box }
+html,body{ height:100% }
+
 body{
-  margin:0; color:var(--text);
-  background:radial-gradient(1200px 800px at 20% -10%, #20306055, transparent),
-             radial-gradient(1200px 800px at 120% 20%, #14204555, transparent),
-             var(--bg);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 800px at 18% -12%, #2a3a6a40, transparent),
+    radial-gradient(1100px 700px at 115% 18%, #1a265a40, transparent),
+    var(--bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", Arial;
   display:flex; flex-direction:column; gap:var(--space-3);
 }
-:focus:not(:focus-visible){outline:none}
-:focus-visible{outline:2px solid var(--primary); outline-offset:2px; border-radius:8px}
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+:focus:not(:focus-visible){ outline:none }
+:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; border-radius:8px }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none!important; transition:none!important }
+}
 
 /* ====== Layout ====== */
-.app-header,.app-main,.app-footer{max-width:var(--container); margin:0 auto; width:100%; padding:0 var(--space-3)}
-.app-header{padding-top:24px}
-h1{margin:0 0 8px; font-weight:800; letter-spacing:.3px}
-.hud{display:flex; gap:10px; flex-wrap:wrap}
-.hud-chip{background:var(--panel); border:1px solid var(--border); padding:8px 12px; border-radius:999px}
-.hud-chip.time{background:linear-gradient( to right, #223058, #1a2444 )}
+.app-header,.app-main,.app-footer{
+  max-width:var(--container);
+  margin:0 auto;
+  width:100%;
+  padding:0 var(--space-3);
+}
+.app-header{ padding-top:24px }
 
-.progress{height:8px; background:#0c1227; border:1px solid var(--border); border-radius:999px; overflow:hidden; margin-top:10px}
-.progress__bar{height:100%; width:0%; background:linear-gradient(90deg, var(--primary), #9ec5ff); transition:width .3s ease}
+h1{ margin:0 0 8px; font-weight:800; letter-spacing:.3px }
 
-.app-main{display:grid; gap:var(--space-3); padding-bottom:28px}
-.card{background:linear-gradient(180deg,var(--panel),var(--card)); border:1px solid var(--border); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:var(--space-4)}
-.meta{color:var(--muted)}
-.hidden{display:none!important}
+/* HUD / chips */
+.hud{ display:flex; gap:10px; flex-wrap:wrap }
+.hud-chip{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:8px 12px;
+  border-radius:999px;
+}
+
+/* === Inserción nombre de usuario (ligero) === */
+.hud-chip.user{
+  display:flex; align-items:center; gap:8px;
+  font-weight:600; letter-spacing:.2px;
+  max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.hud-chip.user::before{
+  content:"@";
+  opacity:.75;
+  font-weight:700;
+}
+
+/* opcional avatar circular si lo añades como <img class="user-avatar"> */
+.user-avatar{
+  width:20px; height:20px; border-radius:50%;
+  object-fit:cover; display:inline-block;
+  border:1px solid var(--border);
+}
+
+.hud-chip.time{
+  background:linear-gradient(to right, #223058, #1a2444);
+  border-color:transparent;
+}
+
+.app-main{ display:grid; gap:var(--space-3); padding-bottom:28px }
+
+.card{
+  background:linear-gradient(180deg,var(--panel),var(--card));
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+  padding:var(--space-4);
+}
+
+.meta{ color:var(--muted) }
+.hidden{ display:none!important }
 
 /* ====== Pregunta ====== */
-#questionari h2{margin:0 0 12px; line-height:1.2}
+#questionari h2{ margin:0 0 12px; line-height:1.2 }
 .question-img{
   display:block; width:100%; max-width:480px; margin:12px auto 0;
   border:1px solid var(--border); border-radius:12px;
 }
 
-/* ====== Respuestas: logos grandes ====== */
+/* ====== Respuestas (logos grandes) ====== */
+/* Mejor encaje: columnas más flexibles */
 .resposta-container{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-  gap:16px; margin:18px 0 8px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:14px;
+  margin:18px 0 8px;
 }
+
+/* FONDO BLANCO para cada div de imagen */
 .resposta{
   display:flex; align-items:center; justify-content:center;
-  min-height:200px; padding:16px; cursor:pointer; user-select:none;
-  background:#0f1530; border:1px solid var(--border); border-radius:var(--radius-md);
+  min-height:180px;                 /* ↓ más compacto por defecto */
+  padding:14px; cursor:pointer; user-select:none;
+  background:#ffffff;               /* <<— fondo blanco solicitado */
+  border:1px solid var(--border);
+  border-width: 1px;
+  border-radius:var(--radius-md);
   transition:transform .08s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;
-  box-shadow:0 2px 0 rgba(255,255,255,.04) inset;
+  box-shadow:inset 0 1px 0 rgba(0,0,0,.04);
 }
-.resposta:hover{transform:translateY(-1px); border-color:#2b3d78}
-.resposta.seleccionada{background:linear-gradient(180deg,#18224a,#121a38); border-color:var(--primary); box-shadow:0 0 0 2px #6ea8fe33 inset}
 
-.resposta .opt{display:flex; flex-direction:column; align-items:center; gap:10px; width:100%}
+/* Mantiene interacción agradable */
+.resposta:hover{
+  transform:translateY(-1px);
+  border-color:#2b3d78;
+  box-shadow:0 6px 20px rgba(0,0,0,.18), inset 0 1px 0 rgba(0,0,0,.04);
+}
+.resposta.seleccionada{
+  border-color:var(--primary);
+  border-width: 4px;
+  box-shadow:0 0 0 2px #6ea8fe33 inset, 0 8px 22px rgba(0,0,0,.18);
+}
 
-/* LOGO grande centrado en todas las respuestas */
+.resposta .opt{ display:flex; flex-direction:column; align-items:center; gap:10px; width:100% }
+
+/* Ajustes de tamaño para buen encaje en pantalla */
 .resposta img{
   display:block; width:100%;
-  max-width:280px;        /* ⇦ ajusta si quieres aún más grande */
-  max-height:160px;
-  height:auto; object-fit:contain; background:transparent; border:0; border-radius:12px;
+  max-width:240px;          /* antes 280px */
+  max-height:120px;         /* antes 160px */
+  height:auto; object-fit:contain;
+  background:transparent; border:0; border-radius:12px;
 }
-.resposta .caption{color:var(--muted); font-size:.95rem; text-align:center}
 
-/* Navegación y botones */
+.resposta .caption{
+  color:#2b3650;            /* mejor contraste sobre blanco */
+  font-size:.95rem;
+  text-align:center;
+}
+
+/* ====== Navegación y botones ====== */
 .botons-navegacio{
   background:#121a38; border:1px solid var(--border); color:var(--text);
   padding:10px 14px; border-radius:12px; cursor:pointer; margin-right:8px;
   transition: background .2s ease, transform .06s ease, border-color .2s ease;
 }
-.botons-navegacio:hover{background:#192246; transform:translateY(-1px)}
-.botons-navegacio:disabled{opacity:.55; cursor:not-allowed}
+.botons-navegacio:hover{ background:#192246; transform:translateY(-1px) }
+.botons-navegacio:disabled{ opacity:.55; cursor:not-allowed }
 
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:12px 16px; border-radius:999px; border:1px solid transparent; cursor:pointer; font-weight:600;
+  padding:12px 16px; border-radius:999px; border:1px solid transparent;
+  cursor:pointer; font-weight:700; letter-spacing:.2px;
 }
-.btn-primary{background:linear-gradient(90deg,var(--primary),#9ec5ff); color:#0b1226; box-shadow:0 8px 18px #6ea8fe33}
-.btn-primary:hover{filter:brightness(1.05)}
+.btn-primary{
+  background:linear-gradient(90deg,var(--primary),#9ec5ff);
+  color:#0b1226; box-shadow:0 8px 18px #6ea8fe33;
+}
+.btn-primary:hover{ filter:brightness(1.05) }
 
-.app-footer{color:var(--muted); display:flex; align-items:center; justify-content:center; margin-bottom:24px}
+/* ====== Footer ====== */
+.app-footer{
+  color:var(--muted); display:flex; align-items:center; justify-content:center; margin-bottom:24px
+}
 
-/* Entrance */
-.fade-in{animation:fade .18s ease both}
-@keyframes fade{from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none}}
+/* ====== Entrance ====== */
+.fade-in{ animation:fade .18s ease both }
+@keyframes fade{
+  from{ opacity:0; transform:translateY(4px) }
+  to{ opacity:1; transform:none }
+}
 
-/* Responsive */
+/* ====== Responsive ====== */
+@media (max-width:860px){
+  .resposta-container{ gap:12px }
+  .resposta{ min-height:170px; padding:12px }
+  .resposta img{ max-width:220px; max-height:110px }
+}
 @media (max-width:520px){
-  .resposta{min-height:220px}
-  .resposta img{max-width:320px; max-height:190px}
+  .resposta{ min-height:180px }                 /* más compactas en móvil */
+  .resposta img{ max-width:260px; max-height:130px }
+  .hud-chip.user{ max-width:200px }             /* evita desbordes largos */
+}
+
+/* ===== Input de nombre + acciones ===== */
+.input-group{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.text-input{
+  flex:1 1 240px;
+  min-width:200px;
+  background:transparent;
+  color:var(--text);
+  border:0;
+  outline:none;
+  padding:10px 12px;
+  font-size:1rem;
+  border-radius:8px;
+}
+
+.text-input::placeholder{ color:var(--muted); opacity:.8 }
+
+/* Botón “limpiar” ligero */
+.btn-ghost{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:background .2s ease, transform .06s ease, border-color .2s ease;
+}
+.btn-ghost:hover{ background:#182047; transform:translateY(-1px) }
+
+/* Reaprovecha tus estilos .btn y .btn-primary existentes */
+/* Ajustes responsive */
+@media (max-width:520px){
+  .text-input{ flex:1 1 100%; min-width:0 }
 }
