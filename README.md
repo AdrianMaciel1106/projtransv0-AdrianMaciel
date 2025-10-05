@@ -1,4 +1,4 @@
-# Projecte Transversal 0 – Quiz Educatiu (ODS 4)
+# Projecte Transversal 0 – Quiz Logos (ODS 4)
 
 **Autor:** Adrian Maciel  
 **Contacte:** [a22adrmacfir@inspedralbes.cat](mailto:a22adrmacfir@inspedralbes.cat)  
