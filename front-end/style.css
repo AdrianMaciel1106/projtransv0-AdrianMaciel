@@ -39,9 +39,6 @@ h1{margin:0 0 10px; font-weight:800; letter-spacing:.3px}
 }
 .hud-chip.time{background:linear-gradient( to right, #223058, #1a2444 );}
 
-.progress{height:8px; background:#0c1227; border-radius:999px; overflow:hidden; border:1px solid var(--border); margin-top:12px}
-.progress__bar{height:100%; background:linear-gradient(90deg, var(--primary), #9ec5ff); transition:width .3s ease}
-
 .app-main{max-width:920px; margin:0 auto; width:100%; padding:0 16px 32px; display:grid; gap:16px}
 .card{
   background:linear-gradient(180deg, var(--panel), var(--card));
