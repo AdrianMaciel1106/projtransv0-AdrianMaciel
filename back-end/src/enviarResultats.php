@@ -8,13 +8,13 @@ $respostes = $input['respostes'] ?? []; // Array de respuestas del usuario
 
 $correctesMap = $_SESSION['answers'] ?? []; // Mapa de respuestas correctas
 
-$correctes = 0; // Contador de respuestas correctas
+$correctes; // Contador de respuestas correctas
 // Contar respuestas correctas
 foreach ($respostes as $r) {
   $id = $r['pregunta_id'] ?? null;
   $resposta = $r['resposta_id'] ?? null;
   if (isset($correctesMap[$id]) && $resposta == $correctesMap[$id]) {
-    $correctes++;
+    printf($id);
   }
 }
 

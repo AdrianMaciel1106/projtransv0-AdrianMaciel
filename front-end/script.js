@@ -212,6 +212,7 @@ window.addEventListener('DOMContentLoaded', () => {
       btnEnviar.classList.remove('hidden');
     }
 
+    
     // === Enviar resultados ===
     function enviarResultats() {
       if (sending) return;
