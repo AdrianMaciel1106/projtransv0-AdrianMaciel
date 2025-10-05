@@ -1,4 +1,4 @@
-# 🌍 Projecte Transversal 0 – Quiz Educatiu (ODS 4)
+# Projecte Transversal 0 – Quiz Educatiu (ODS 4)
 
 **Autor:** Adrian Maciel  
 **Contacte:** [a22adrmacfir@inspedralbes.cat](mailto:a22adrmacfir@inspedralbes.cat)  
@@ -7,7 +7,7 @@
 
 ---
 
-## 🧩 Descripció del Projecte
+## Descripció del Projecte
 
 Aquest projecte és una aplicació **web interactiva** tipus *quiz* desenvolupada amb **JavaScript, PHP i MySQL**, que permet als usuaris respondre preguntes de manera dinàmica i veure el resultat final en temps real.  
 L'objectiu principal és promoure l’aprenentatge actiu i l’autoavaluació mitjançant un entorn senzill i accessible des del navegador.
@@ -16,7 +16,7 @@ L’aplicació està pensada per servir com a base d’un sistema educatiu gamif
 
 ---
 
-## 🎯 Objectiu de Desenvolupament Sostenible (ODS)
+## Objectiu de Desenvolupament Sostenible (ODS)
 
 ### 🏫 ODS 4 – Educació de Qualitat
 Aquest projecte contribueix a l’**ODS 4: Educació de Qualitat**, ja que utilitza la tecnologia per:
@@ -24,11 +24,11 @@ Aquest projecte contribueix a l’**ODS 4: Educació de Qualitat**, ja que utili
 - Donar eines accessibles per a l’avaluació i la formació contínua.
 - Integrar la ludificació (*gamificació*) dins l’aprenentatge per augmentar la implicació de l’alumnat.
 
-> 📘 **Meta 4.4**: Incrementar el nombre de joves i adults amb competències tècniques i professionals rellevants per a l’ocupació i el treball digne.
+> **Meta 4.4**: Incrementar el nombre de joves i adults amb competències tècniques i professionals rellevants per a l’ocupació i el treball digne.
 
 ---
 
-## ⚙️ Tecnologies Utilitzades
+## Tecnologies Utilitzades
 
 | Àrea | Tecnologia |
 |------|-------------|
@@ -41,7 +41,7 @@ Aquest projecte contribueix a l’**ODS 4: Educació de Qualitat**, ja que utili
 
 ---
 
-## 🗂️ Estructura del Projecte
+## Estructura del Projecte
 
 projtransv0-AdrianMaciel/
 │
@@ -69,14 +69,14 @@ projtransv0-AdrianMaciel/
 
 ---
 
-## 🚀 Instal·lació i Execució Local
+## Instal·lació i Execució Local
 
-### 1️⃣ Requisits previs
+### Requisits previs
 - PHP ≥ 8.0  
 - MySQL o MariaDB  
 - Navegador modern (Chrome, Firefox, Edge, etc.)
 
-### 2️⃣ Configuració de la base de dades
+### Configuració de la base de dades
 1. Crear una base de dades (per exemple, `projtransv0`).
 2. Importar el script SQL amb les taules `preguntes` i `respostes`.
 3. Configurar les credencials a `back-end/src/db.php`:
