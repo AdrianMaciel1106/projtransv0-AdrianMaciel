@@ -18,7 +18,7 @@ L’aplicació està pensada per servir com a base d’un sistema educatiu gamif
 
 ## Objectiu de Desenvolupament Sostenible (ODS)
 
-### 🏫 ODS 4 – Educació de Qualitat
+###ODS 4 – Educació de Qualitat
 Aquest projecte contribueix a l’**ODS 4: Educació de Qualitat**, ja que utilitza la tecnologia per:
 - Fomentar l’aprenentatge digital interactiu.
 - Donar eines accessibles per a l’avaluació i la formació contínua.
