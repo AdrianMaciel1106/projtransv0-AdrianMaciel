@@ -1,18 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ca">
 <head>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <title>ENDEVINA LA MARCA</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projecte Transversal 0 · Quiz</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <h1>ENDEVINA LA MARCA COMERCIAL</h1>
-  <div id="questionari"></div>
+  <header class="app-header">
+    <h1>Endevina la Marca</h1>
+    <div class="hud">
+      <div class="hud-chip" aria-live="polite">
+        Pregunta <span id="contador-pregunta">–</span>
+      </div>
+      <div class="hud-chip time" aria-live="polite">
+        ⏱ <span id="contador-tiempo">0:30</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div id="questionari" class="card"></div>
+    <div id="marcador" class="meta"></div>
+    <button id="enviar-resultats" class="btn btn-primary hidden">Enviar Resultats</button>
+  </main>
+
+  <footer class="app-footer">
+    <small>· Projecte Transversal 0 · ODS 4</small>
+  </footer>
+
   <script src="./script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <div id="contador-tiempo"></div>
 </body>
 </html>
