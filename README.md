@@ -3,7 +3,7 @@
 **Autor:** Adrian Maciel  
 **Contacte:** [a22adrmacfir@inspedralbes.cat](mailto:a22adrmacfir@inspedralbes.cat)  
 **Assignatura:** Desenvolupament Client (DIGISOS)  
-**Curs:** 2024 – 2025  
+**Curs:** 2025 – 2026  
 
 ---
 
