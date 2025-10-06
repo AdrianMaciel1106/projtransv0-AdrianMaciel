@@ -37,7 +37,7 @@ Aquest projecte contribueix a l’**ODS 4: Educació de Qualitat**, ja que utili
 | Base de dades | MySQL |
 | Control de versions | Git + GitHub |
 | Qualitat de codi | SonarCloud |
-| Desplegament | Vercel / Netlify (Front-end) |
+| Desplegament | Vercel (Front-end) |
 
 ---
 
