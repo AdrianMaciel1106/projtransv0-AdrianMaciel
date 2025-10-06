@@ -1,4 +1,3 @@
-// assets/js/questionari.js
 let data = null;                  // { preguntes: [ {id, pregunta, imatge, respostes:[{id,text,imatge}]} ] }
 let current = 0;                  // índice de la pregunta actual
 let answers = [];                 // answers[indexPregunta] = idRespuesta
